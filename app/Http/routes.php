@@ -20,4 +20,5 @@ Route::get('/', function () {
  */
 Route::group(['prefix' => 'admin','namespace'=>'Admin'], function () {
     Route::get('index', 'IndexController@index'); //后台首页
+    Route::get('getMenuList', 'IndexController@getMenuList'); //获取菜单数据
 });
