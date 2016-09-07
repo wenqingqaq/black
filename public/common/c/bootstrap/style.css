@@ -1,0 +1,170 @@
+.login-content{
+	padding-top:150px;
+}
+.login-panle{
+	width:380px;
+	height:266px;
+	-webkit-box-shadow: #666 0px 0px 10px;
+	-moz-box-shadow: #666 0px 0px 10px;
+	box-shadow: #666 0px 0px 10px;
+	behavior: url(/PIE.htc);
+}
+.login-copyright{
+	line-height: 35px;
+}
+.loginbutton{
+	height:35px;
+	padding-top:20px;
+	padding-right:80px;
+	text-align: right;
+}
+.tabs li a.tabs-inner {
+	background-color: #F5F5F5;
+	background-repeat: repeat-x;
+	Invalid property value.filter: progid:DXImageTransform.;
+	border-color:#D0D0D0;
+}
+
+.cat-admin-top {
+	background: url(./img/topbg.png) repeat-x;
+}
+.cat-admin-top .panel-body{
+	background: none;
+}
+.cat-admin-bottom {
+	font-size: 12px;
+	line-height: 24px;
+	text-align: center;
+	background: #EEEEEE;
+}
+.cat-admin-logo{
+	width:100%;
+	height:100%;
+}
+.cat-admin-topmenu{
+	width:60px;
+	height:60px;
+	float:left;
+	cursor:pointer;
+	/* background: url(./img/menubg.png) no-repeat center; */
+}
+.cat-admin-topmenu:hover{
+	background: url(./img/menubg-hover.png) no-repeat center;
+}
+.cat-admin-topmenuhover{
+	/* background: url(./img/menubg-hover.png) no-repeat center; */
+}
+.cat-admin-topicon{
+	height:28px;
+	text-align: center;
+	padding-top: 8px;
+}
+.cat-admin-topmenutitle{
+	height:20px;
+	text-align: center;
+	font-weight:bold;
+}
+.cat-admin-topname{
+	line-height: 30px;
+}
+.cat-admin-toptoollist a{
+	display:block;
+	float:left;
+	margin-left: 5px;
+	margin-top: 3px;
+	width:20px;
+	height:20px;
+	cursor:pointer;
+}
+.cat-admin-top-tool-font{
+	text-align: center;
+	font-size:12px;
+	color:#FFFFFF;
+	text-decoration: none;
+}
+.cat-admin-top-tool-font:hover{
+	text-decoration: none;
+}
+.cat-admin-topinfo{
+	background: url(./img/info.png) no-repeat center;
+}
+.cat-admin-topinfo:hover{
+	background: url(./img/info-hover.png) no-repeat center;
+}
+.cat-admin-toppifu{
+	background: url(./img/pifu.png) no-repeat center;
+}
+.cat-admin-toppifu:hover{
+	background: url(./img/pifu-hover.png) no-repeat center;
+}
+.cat-admin-topinfohave{
+	background: url(./img/infohave.png) no-repeat center;
+}
+.cat-admin-topinfohave:hover{
+	background: url(./img/infohave-hover.png) no-repeat center;
+}
+.cat-admin-topmessage{
+	background: url(./img/message.png) no-repeat center;
+}
+.cat-admin-topmessage:hover{
+	background: url(./img/message-hover.png) no-repeat center;
+}
+.cat-admin-topmessagehave{
+	background: url(./img/messagehave.png) no-repeat center;
+}
+.cat-admin-topmessagehave:hover{
+	background: url(./img/messagehave-hover.png) no-repeat center;
+}
+.cat-admin-topemail{
+	background: url(./img/email.png) no-repeat center;
+}
+.cat-admin-topemail:hover{
+	background: url(./img/email-hover.png) no-repeat center;
+}
+.cat-admin-topemailhave{
+	background: url(./img/emailhave.png) no-repeat center;
+}
+.cat-admin-topemailhave:hover{
+	background: url(./img/emailhave-hover.png) no-repeat center;
+}
+.cat-admin-toppass{
+	background: url(./img/pass.png) no-repeat center;
+}
+.cat-admin-toppass:hover{
+	background: url(./img/pass-hover.png) no-repeat center;
+}
+#leftmenu .tree-node{
+	height:23px;
+	padding-top:4px;
+}
+#leftmenu .tree-node-selected{
+	background: #FBEC88;
+	color: #000000;
+}
+#leftmenu .accordion-header-selected{
+	background :#f3f3f3;
+}
+#leftmenu .accordion-header-selected .panel-title{
+	color: #000000;
+}
+.cat-toobarmenus{
+	padding:2px 5px;
+}
+.cat-searchinput{
+	width:100px;
+	height:16px;
+}
+#westgrid .pagination-info{
+	display:none;
+}
+.nowwestselect{
+	font-weight: bold;
+	color:green;
+}
+
+
+
+
+
+
+

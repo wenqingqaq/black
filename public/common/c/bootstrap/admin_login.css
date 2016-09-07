@@ -1,0 +1,37 @@
+@CHARSET "UTF-8";
+
+/* 全局样式 */
+body, ul, dl, dd, dt, ol, li, p, h1, h2, h3, h4, h5, h6, textarea, form, select, fieldset, table, td, div, input {margin:0;padding:0;-webkit-text-size-adjust: none}
+h1, h2, h3, h4, h5, h6{font-size:12px;font-weight:normal}
+body>div, form>div {margin:0 auto}
+div {text-align:left}
+a img {border:0}
+table{border-collapse:collapse; border-spacing:0}
+select,input,textarea{ outline: none }
+body { color: #333; text-align: center; font: 12px "微软雅黑" }
+ul, ol, li {list-style-type:none;vertical-align:0}
+a {outline-style:none;color:#333;text-decoration:none}
+a:hover { color: #CC0000; text-decoration: underline}
+a, area {blr:expression(this.onFocus=this.blur())}
+:focus {-moz-outline-style: none}
+.clear {clear:both;height:0; overflow:hidden; visibility:hidden;}
+
+.mlogin_top { background: #155295; height: 85px; padding-top: 32px; padding-left: 50px; }
+.mlogin_footer { font-size: 14px; line-height: 36px; color: #FFF; background: #155295; height: 36px; width: 100%; position: absolute; left: 0px; bottom: 0px; text-align: center; }
+.mlogin_box { margin: 50px auto 0px; height: 415px; width: 1024px; }
+.mlogin_Img { float: left; margin-top: 20px; }
+.mlogin_fm { background: #fafafa url(/common/c/bootstrap/img/login_t.jpg) no-repeat left top; height: 292px; width: 540px; border: 1px solid #D1D1D1; float: right; border-radius: 0.3em; overflow: hidden; padding-top: 90px; }
+.mlogin_fm ul li { height: 56px; line-height: 42px; }
+.mlogin_s1 { color: #666666; float: left; width: 123px; padding-right: 25px; font-size: 18px; text-align: right; }
+.mlogin_int { color: #666; padding: 0px 10px; float: left; height: 40px; width: 250px; border: 1px solid #E3E3E3; font: 14px/40px "微软雅黑"; border-radius:0.3em;}
+.mlogin_int2 { float: left; width: 135px; margin-right: 15px; }
+.mlogin_int:focus{ box-shadow:0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6); border-color:#66afe9;}
+.mlogin_coder { float: left; margin-top: 1px; }
+.mlogin_fm ul .mlogin_li01 { height: 42px; }
+.mlogin_fm ul .mlogin_li02 { line-height: 38px; height: 48px; margin-bottom: 0px; font-size: 14px; }
+.mlogin_chk { float: left; margin-top: 13px; *margin-top:10px; _margin-top:9px; margin-right: 8px; }
+.mlogin_red { color: #f60a47; float: left; width: 149px; }
+.mlogin_chgCoder { color: #0000ff; }
+.mlogin_fm ul .mlogin_li03 { padding-left: 318px; height: 45px; }
+.mLogin_submit { color: #FFF; background: #5892D1; float: left; height: 42px; width: 100px; border-width: 0px; border-style: none; cursor: pointer; font: 18px "微软雅黑"; border-radius:0.2em; }
+.mLogin_submit span { position: relative; top: -1px; }

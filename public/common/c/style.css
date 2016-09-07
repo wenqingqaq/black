@@ -1,0 +1,363 @@
+@charset "utf-8";
+html {
+	color: #000;
+	background: #fff;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	margin: 0;
+	padding: 0
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block
+}
+audio, canvas, video {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1
+}
+body, button, input, select, textarea {
+	font: 12px/1.5 tahoma, arial, "Hiragino Sans GB", "Microsoft Yahei", \5b8b\4f53
+}
+input, select, textarea {
+	font-size: 100%
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0
+}
+th {
+	text-align: inherit
+}
+fieldset, img {
+	border: 0
+}
+iframe {
+	display: block
+}
+abbr, acronym {
+	border: 0;
+	font-variant: normal
+}
+del {
+	text-decoration: line-through
+}
+address, caption, cite, code, dfn, em, th, var {
+	font-style: normal;
+	font-weight: 500
+}
+ol, ul {
+	list-style: none
+}
+caption, th {
+	text-align: left
+}
+h1, h2, h3, h4, h5, h6 {
+	font-size: 100%;
+	font-weight: 500
+}
+q:before, q:after {
+	content: ''
+}
+sub, sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline
+}
+sup {
+	top: -.5em
+}
+sub {
+	bottom: -.25em
+}
+a:hover {
+	text-decoration: underline
+}
+ins, a {
+	text-decoration: none
+}
+.fn-clear:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0
+}
+.fn-clear {
+	zoom: 1
+}
+body .fn-hide {
+	display: none
+}
+.fn-left, .fn-right {
+	display: inline
+}
+.fn-left {
+	float: left
+}
+.fn-right {
+	float: right
+}
+.fn-text-overflow {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap
+}
+.fn-linear {
+	background: -webkit-gradient(linear,left top,left bottom,from(#fcfcfc),to(#f1f1f1));
+	background: -moz-linear-gradient(top,#fcfcfc,#f1f1f1);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcfcfc', endColorstr='#f1f1f1');
+	background: -o-linear-gradient(top,#fcfcfc,#f1f1f1);
+	background: linear-gradient(top,#fcfcfc,#f1f1f1)
+}
+.fn-linear-light {
+	background: -webkit-gradient(linear,left top,left bottom,from(#fcfcfc),to(#f9f9f9));
+	background: -moz-linear-gradient(top,#fcfcfc,#f9f9f9);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcfcfc', endColorstr='#f9f9f9');
+	background: -o-linear-gradient(top,#fcfcfc,#f9f9f9);
+	background: linear-gradient(top,#fcfcfc,#f9f9f9)
+}
+.fn-rmb {
+	font-family: arial;
+	font-style: normal;
+	padding-right: 4px
+}
+.fn-webkit-adjust {
+	-webkit-text-size-adjust: none
+}
+/*以上定义表单样式*/
+.cat-form td {
+	padding: 4px 6px;
+}
+.cat-label {
+	width: 100px;
+	font-size: 12px;
+	line-height: 30px;
+	vertical-align: top;
+	text-align: right;
+}
+input:focus {
+	outline: none;
+}
+.cat-input-text {
+	border: 0px;
+	border-bottom: 1px solid #CCCCCC;
+}
+.cat-search-input {
+	width: 170px;
+	height: 16px;
+	padding: 2px 4px;
+	line-height: 13px;
+	border: 1px solid #ccc;
+	border-top-color: #a6a6a6;
+	color: #595959;
+	font-size: 12px;
+}
+.cat-search-input:hover {
+	border: 1px #a6a6a6 solid;
+	border-top-color: #808080;
+}
+
+.cat-search-input:focus {
+	border: 1px #07f solid;
+	outline: 1px #8cddff solid;
+	color: #595959;
+}
+.cat-input {
+	width: 170px;
+	height: 20px;
+	padding: 2px 4px;
+	line-height: 16px;
+	border: 1px solid #ccc;
+	border-top-color: #a6a6a6;
+	color: #595959;
+	font-size: 12px;
+}
+.cat-input:hover {
+	border: 1px #a6a6a6 solid;
+	border-top-color: #808080;
+}
+
+.cat-input:focus {
+	border: 1px #07f solid;
+	outline: 1px #8cddff solid;
+	color: #595959;
+}
+.cat-textarea {
+	width: 170px;
+	height: 80px;
+	padding: 3px 4px;
+	line-height: 16px;
+	border: 1px solid #ccc;
+	border-top-color: #a6a6a6;
+	color: #595959;
+	font-size: 12px;
+}
+.cat-textarea:hover {
+	border: 1px #a6a6a6 solid;
+	border-top-color: #808080;
+}
+.cat-textarea:focus {
+	border: 1px #07f solid;
+	outline: 1px #8cddff solid; /* box-shadow: 0 0 3px #8cddff; */
+	color: #595959;
+}
+.cat-messeager {
+	color: #B26100;
+	padding-left: 10px;
+}
+.cat-messeager:hover {
+	color: #000000;
+}
+.cat-setmsg {
+	border: 1px solid #CCCCCC;
+	background-color: #FFFFEF;
+	margin: 20px;
+}
+.cat-setmsg h1 {
+	font-size: 16px;
+	font-weight: bold;
+	padding-left: 10px;
+	line-height: 28px;
+}
+.cat-setmsg p {
+	font-size: 12px;
+	line-height: 24px;
+	padding: 3px 15px;
+}
+.combo:hover, .spinner:hover {
+	border: 1px #07f solid;
+	outline: 1px #8cddff solid; /* box-shadow: 0 0 3px #8cddff; */
+	color: #595959;
+}
+.upload_imgs {
+	min-width: 650px;
+	overflow: hidden;
+}
+.uploadimagelist {
+	width: 202px;
+	height: 215px;
+	float: left;
+	margin: 3px;
+	border: 1px solid #CCCCCC;
+	padding: 3px;
+	position: relative;
+	overflow: hidden;
+}
+.remove_image {
+	position: absolute;
+	right: 4px;
+	top: 4px;
+	overflow: hidden;
+	color: #0088CC;
+	cursor: pointer;
+	background: #CFEBEE;
+	padding: 2px 8px;
+	font-size: 16px;
+	font-weight: bold;
+}
+.remove_image:hover {
+	color: #DD0000;
+	text-decoration: none;
+}
+/*提示表单样式*/
+#suggest {
+	width: 264px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: #fff;
+	border: 1px solid #ccc;
+	display: none;
+	z-index:99999;
+}
+#suggest p {
+	padding: 0 3px;
+	background: #fff;
+	cursor: default;
+	height: auto;
+	line-height: 21px;
+}
+#suggest p.highlight {
+	background: #22f;
+	color: #eee;
+}
+#suggest .sugtips {
+	color: #888;
+	border-bottom: 1px dashed #888;
+	padding-left: 5px;
+	line-height: 21px;
+}
+#suggest span.inputcode {
+	float: right;
+}
+#suggest p.narrow {
+	float: left;
+	width: 50px;
+}
+
+/* Tiny Carousel */
+/* Examples - Tiny Carousel */
+#slider1 { height: 1%; overflow:hidden; padding: 0 0 10px;   }
+#slider1 .viewport { float: left; width: 240px; height: 125px; overflow: hidden; position: relative; }
+#slider1 .buttons { background:url("../images/buttons.png") no-repeat scroll 0 0 transparent; display: block; margin: 30px 10px 0 0; background-position: 0 -38px; text-indent: -999em; float: left; width: 39px; height: 37px; overflow: hidden; position: relative; }
+#slider1 .next { background-position: 0 0; margin: 30px 0 0 10px;  }
+#slider1 .disable { visibility: hidden; }
+#slider1 .overview { list-style: none; position: absolute; width: 240px; left: 0 ;top: 0; }
+#slider1 .overview li{ float: left; margin: 0 20px 0 0; padding: 1px; height: 121px; border: 1px solid #dcdcdc; width: 236px;}
+
+#slider2 { height: 1%; overflow:hidden; position: relative; padding: 0 0 10px;   }
+#slider2 .viewport { float: left; width: 780px; height: 125px; overflow: hidden; position: relative; }
+#slider2 .buttons { background:url("../images/buttons.png") no-repeat scroll 0 0 transparent; display: block; margin: 30px 10px 0 0; background-position: 0 -38px; text-indent: -999em; float: left; width: 39px; height: 37px; overflow: hidden; position: relative; }
+#slider2 .next { background-position: 0 0; margin: 30px 0 0 10px; }
+#slider2 .disable { visibility: hidden; }
+#slider2 .overview { list-style: none; position: absolute; width: 240px; left: 0 ;top: 0; }
+#slider2 .overview li{ float: left; margin: 0 20px 0 0; padding: 1px; height: 121px; border: 1px solid #dcdcdc; width: 236px;}
+
+#slider3 { height: 1%; overflow:hidden; padding: 0 0 10px 0; }
+#slider3 .viewport { width: 240px; height: 125px; float: left; overflow: hidden; position: relative; }
+#slider3 .pager { overflow:hidden; list-style: none; clear: both; margin: 0 0 0 45px; }
+#slider3 .pager li { float: left; }
+#slider3 .pager a { background-color: #fff; text-decoration: none; text-align: center; padding: 5px; color: #555555; font-size: 14px; font-weight: bold; display: block; }
+#slider3 .pager .active { color: #fff; background-color:  #555555; }
+#slider3 .buttons { background:url("../images/buttons.png") no-repeat scroll 0 0 transparent; display: block; margin: 30px 10px 0 0; background-position: 0 -38px; text-indent: -999em; float: left; width: 39px; height: 37px; overflow: hidden; position: relative; }
+#slider3 .next { background-position: 0 0; margin: 30px 0 0 10px; }
+#slider3 .disable { visibility: hidden; }
+#slider3 .overview { list-style: none; position: absolute; width: 240px; left: 0 ;top: 0; }
+#slider3 .overview li{ float: left; margin: 0 20px 0 0; padding: 1px; height: 121px; border: 1px solid #dcdcdc; width: 236px;}
+
+#slider4 { height: 1%; overflow:hidden; display: block; padding: 0 0 10px 0; margin: 0 0 0 50px;}
+#slider4 .viewport { width: 500px; height: 257px; overflow: hidden; position: relative; }
+#slider4 .pager { overflow:hidden; height: 1%; list-style: none; clear: both; margin: 0 0 10px; }
+#slider4 .pager li { float: left; }
+#slider4 .pagenum { background-color: #fff; text-decoration: none; text-align: center; padding: 5px; color: #555555; font-size: 14px; font-weight: bold; display: block; }
+#slider4 .active { color: #fff; background-color:  #555555; }
+#slider4 .overview { list-style: none; position: absolute; width: 500px; left: 0 ;top: 0; }
+#slider4 .overview .page{ float: left; padding: 5px; height: 245px; border: 1px solid #dcdcdc; width: 488px;}
+
+#slider5 { height: 1%; overflow:hidden; padding: 0 0 10px; margin: 0 0 0 50px;  }
+#slider5 .viewport { width: 240px; height: 125px; overflow: hidden; position: relative; }
+#slider5 .buttons { background:url("../images/buttons.png") no-repeat scroll 0 0 transparent; display: block; margin: 0 0 5px 100px; background-position: 0 -74px; text-indent: -999em; width: 39px; height: 37px; overflow: hidden; position: relative; }
+#slider5 .next { background-position: 0 -112px; margin: 5px 0 0 100px;  }
+#slider5 .disable { visibility: hidden; }
+#slider5 .overview { list-style: none; position: absolute; width: 240px; left: 0 ;top: 0; }
+#slider5 .overview li{ float: left; margin: 0 20px 0 0; padding: 1px; height: 121px; border: 1px solid #dcdcdc; width: 236px;}
+
+#slider6 { height: 1%; overflow:hidden; padding: 0 0 10px; margin: 0 0 0 50px;  }
+#slider6 .viewport { float: left; width: 240px; height: 125px; overflow: hidden; position: relative; }
+#slider6 .buttons { background:url("../images/buttons.png") no-repeat scroll 0 0 transparent; display: block; margin: 30px 10px 0 0; background-position: 0 -38px; text-indent: -999em; float: left; width: 39px; height: 37px; overflow: hidden; position: relative; }
+#slider6 .next { background-position: 0 0; margin: 30px 0 0 10px;  }
+#slider6 .disable { visibility: hidden; }
+#slider6 .overview { list-style: none; position: absolute; width: 240px; left: 0 ;top: 0; }
+#slider6 .overview li{ float: left; margin: 0 20px 0 0; padding: 1px; height: 121px; border: 1px solid #dcdcdc; width: 236px;}
+
+#slider7 { height: 1%; overflow:hidden; padding: 0 0 10px 0; }
+#slider7 .viewport { width: 240px; height: 125px; float: left; overflow: hidden; position: relative; }
+#slider7 .buttons { background:url("../images/buttons.png") no-repeat scroll 0 0 transparent; display: block; margin: 30px 10px 0 0; background-position: 0 -38px; text-indent: -999em; float: left; width: 39px; height: 37px; overflow: hidden; position: relative; }
+#slider7 .next { background-position: 0 0; margin: 30px 0 0 10px; }
+#slider7 .disable { visibility: hidden; }
+#slider7 .overview { list-style: none; position: absolute; width: 240px; left: 0 ;top: 0; }
+#slider7 .overview li{ float: left; margin: 0 20px 0 0; padding: 1px; height: 121px; border: 1px solid #dcdcdc; width: 236px;}

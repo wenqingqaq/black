@@ -1,0 +1,21 @@
+.icon-index{
+	background:url('./icon/index.png') no-repeat center center;
+}
+.icon-nav{
+	background:url('./icon/nav.png') no-repeat center center;
+}
+.icon-clear{
+	background:url('./icon/clear.png') no-repeat center center;
+}
+.icon-fullscreen{
+	background:url('./icon/fullscreen.png') no-repeat center center;
+}
+.icon-pdf{
+	background:url('./icon/pdf.gif') no-repeat center center;
+}
+.icon-excel{
+	background:url('./icon/excel.gif') no-repeat center center;
+}
+.icon-word{
+	background:url('./icon/word.gif') no-repeat center center;
+}

@@ -1,0 +1,30 @@
+@charset "utf-8";
+.pageBottom{
+	border-top:1px solid #ffffff;
+	height:40px;
+}
+#pageContent{margin:5px auto;width: 650px;}
+.pageBottom .prev{float: left;}
+.pageBottom span, .pageBottom ul li{
+	cursor:pointer;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-o-border-radius:5px;
+	-ms-border-radius:5px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+}
+.pageBottom span{display: inline-block;width:98px;font-size: 17px;}
+.pageBottom .next{margin-left:25px;}
+.pageBottom ul li{
+	float: left;
+	font-weight: 600;
+	margin: 0 0 0 25px;
+	width: 25px;
+}
+.hover{border: 1px solid #99cc00;background: #99cc00;color:#fffccc;}
+.sphover{background: #99cc00;color:#ffffff;}
+.liClick{border: 1px solid #ffffff;color:#ffffff;background: #FF8000;}
+.spClick{background: #FF8000;border: 1px solid #FF8000;color:#ffffff;font-size:600;}

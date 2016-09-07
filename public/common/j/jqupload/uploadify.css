@@ -1,0 +1,131 @@
+/*
+Uploadify
+Copyright (c) 2012 Reactive Apps, Ronnie Garcia
+Released under the MIT License <http://www.opensource.org/licenses/mit-license.php> 
+*/
+
+.uploadify {
+	position: relative;
+	margin-bottom: 1em;
+}
+.uploadify-button {
+	background-color: #F4F4F4;
+	background-image: linear-gradient(bottom, #F4F4F4 0%, #E2E2E2 100%);
+	background-image: -o-linear-gradient(bottom, #F4F4F4 0%, #E2E2E2 100%);
+	background-image: -moz-linear-gradient(bottom, #F4F4F4 0%, #E2E2E2 100%);
+	background-image: -webkit-linear-gradient(bottom, #F4F4F4 0%, #E2E2E2 100%);
+	background-image: -ms-linear-gradient(bottom, #F4F4F4 0%, #E2E2E2 100%);
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0, #F4F4F4),
+		color-stop(1, #E2E2E2)
+	);
+	background-position: center top;
+	background-repeat: no-repeat;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	border: 1px solid #D3D3D3;
+	color: #000;
+	font: bold 12px Arial, Helvetica, sans-serif;
+	text-align: center;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+	width: 100%;
+}
+.uploadify:hover .uploadify-button {
+	background-color: #E4E4E4;
+	background-image: linear-gradient(top, #E4E4E4 0%, #E1E7EA 100%);
+	background-image: -o-linear-gradient(top, #E4E4E4 0%, #E1E7EA 100%);
+	background-image: -moz-linear-gradient(top, #E4E4E4 0%, #E1E7EA 100%);
+	background-image: -webkit-linear-gradient(top, #E4E4E4 0%, #E1E7EA 100%);
+	background-image: -ms-linear-gradient(top, #E4E4E4 0%, #E1E7EA 100%);
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0, #E4E4E4),
+		color-stop(1, #E1E7EA)
+	);
+	background-position: center bottom;
+}
+.uploadify-button.disabled {
+	background-color: #F6F7E7;
+	background-image: url('');
+	color: #D6D6D6;
+}
+.uploadify:hover .uploadify-button.disabled {
+	background-color: #F6F7E7;
+	background-image: url('');
+	color: #D6D6D6;
+}
+
+.uploadify-queue {
+	margin-bottom: 1em;
+}
+.uploadify-queue-item {
+	background-color: #F5F5F5;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	font: 11px Verdana, Geneva, sans-serif;
+	margin-top: 5px;
+	max-width: 450px;
+	padding: 10px;
+}
+.uploadify-error {
+	background-color: #FDE5DD !important;
+}
+.uploadify-queue-item .cancel a {
+	background: url('./uploadify-cancel.png') 0 0 no-repeat;
+	float: right;
+	height:	16px;
+	text-indent: -9999px;
+	width: 16px;
+}
+.uploadify-queue-item.completed {
+	background-color: #E5E5E5;
+}
+.uploadify-progress {
+	position:relative;
+	background-color: #E5E5E5;
+	top: 0px;
+	width: 95%;
+}
+.uploadify-progress-bar {
+	background-color: #0099FF;
+	height: 3px;
+	width: 1px;
+}
+.upload_files_div .upload_files_b{
+	overflow: hidden;
+}
+.file_input{
+	width:190px;
+	padding:2px;
+	float:left;
+}
+.file_upload_button{
+	width:130px;
+	float:left;
+}
+.queueID_css{
+	max-width:470px;
+	max-height:100px;
+	overflow: auto;
+}
+.files_list{
+	max-width:470px;
+	max-height:200px;
+	overflow: auto;
+}
+.upload_img{
+	width:200px;
+	height:150px;
+	border:1px solid #CCCCCC;
+	background-image: url("./nopic200x150.jpg");
+}
+
+
+

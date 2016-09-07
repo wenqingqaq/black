@@ -1,0 +1,39 @@
+@CHARSET "UTF-8";
+.site_navigation_list td{float:left}
+
+.menu_shanghu {
+	color:#ff834c;
+}
+.menu_xitong {
+	color:#7fa936;
+}
+.menu_yunchaoshi {
+	color:#d1679c;
+}
+.menu_huiyuan {
+	color:#e6826c;
+}
+.menu_baobiao {
+	color:#58aad4;
+}
+.menu_wangzhan {
+	color:#ddaa36;
+}
+.menu_shangpin {
+	color:#52c8b9;
+}
+.menu_kefu {
+	color:#e47264;
+}
+.menu_wuliu {
+	color:#76aebb;
+}
+.menu_daren {
+	color:#e198eb;
+}
+.menu_shangjia {
+	color:#ff834c;
+}
+.menu_dianpu {
+	color:#d07100;
+}

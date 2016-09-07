@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+/**
+ * 后台模块显示
+ */
+Route::group(['prefix' => 'admin','namespace'=>'Admin'], function () {
+    Route::get('index', 'IndexController@index'); //后台首页
+});
