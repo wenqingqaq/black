@@ -18,7 +18,8 @@ Route::get('/', function () {
 /**
  * 后台模块显示
  */
-Route::group(['prefix' => 'admin','namespace'=>'Admin'], function () {
+Route::group(['namespace'=>'Admin'], function () {
     Route::get('index', 'IndexController@index'); //后台首页
+    Route::get('login', 'IndexController@login'); //后台登录界面
     Route::get('getMenuList', 'IndexController@getMenuList'); //获取菜单数据
 });

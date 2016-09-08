@@ -10,4 +10,5 @@ use Illuminate\Support\Facades\Input;
 
 class CommonController extends Controller
 {
+
 }
