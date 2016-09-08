@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests;
 use App\Server\Admin\AuthorityService;
-use App\ThirdClass\Verify;
-use Mews\Captcha\Facades\Captcha;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Validation\ValidationException;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Validator;
 
 
 class IndexController extends CommonController
@@ -59,5 +61,31 @@ class IndexController extends CommonController
     public function img_verify()
     {
         return captcha();
+    }
+
+    /**
+     * 登录验证
+     * create by wenQing
+     * @throws AuthorizationException
+     */
+    public function loginCheck()
+    {
+        $rules = [
+            'vcode' => 'required|captcha',
+            'user' => 'required',
+            'pass' => 'required'
+        ];
+        $message = [
+            'vcode.required' => '验证码不能为空',
+            'vcode.captcha' => '验证码不正确',
+            'user.required' => '用户名不能为空',
+            'pass.required' => '密码不能为空',
+        ];
+        $validator = Validator::make(Input::all(), $rules, $message);
+        if ($validator->fails())
+        {
+            return $this->errorReturn($validator->errors()->all());
+        }
+        return $this->successReturn('登录成功!');
     }
 }

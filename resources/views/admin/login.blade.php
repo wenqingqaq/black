@@ -23,8 +23,9 @@
                 $("#pass").val('');
             });
         });
-        function reloadlogingrid() {
-            location.href = "{{url('index')}}}";
+        function reloadlogingrid()
+        {
+            location.href = "{{url('index')}}";
             $.messager.progress({
                 title: '登陆成功',
                 msg: '登陆成功，系统正在进入后台...'
@@ -48,9 +49,7 @@
                     },
                     success    : function(data, textStatus, jqXHR){
                         loading(1);
-
-                        $.messager.alert('提示', data.msg);
-
+                        //$.messager.alert('提示', data.msg);
                         if (data.type == 'suc') {
                             try {
                                 $('#' + id + 'window').window("close");
@@ -102,6 +101,7 @@
     <img class="mlogin_Img" src="/common/c/bootstrap/img/login_bg.jpg" width="425" height="339" />
     <div class="mlogin_fm">
         <form id="loginform" method="post" action="{{url('loginCheck')}}">
+            {{csrf_field()}}
             <ul>
                 <li><span class="mlogin_s1">用户名</span><input class="mlogin_int" name="user" type="text" id="user" data-options="required:true"/></li>
                 <li><span class="mlogin_s1">密 &nbsp;&nbsp; 码</span><input class="mlogin_int" name="pass" type="password" id="pass" data-options="required:true"/></li>
