@@ -8,7 +8,7 @@
     <script type="text/javascript">
 
         var objs = {};
-        objs.loginCheckURL = "{:U('loginCheck', '', false)}"; // 提交登录信息的 URL，不带伪静态后缀
+        objs.loginCheckURL = "{{url('loginCheck')}}"; // 提交登录信息的 URL，不带伪静态后缀
 
         $(function(){
             $("#user").focus();
@@ -24,7 +24,7 @@
             });
         });
         function reloadlogingrid() {
-            location.href = "{:U('index')}";
+            location.href = "{{url('index')}}}";
             $.messager.progress({
                 title: '登陆成功',
                 msg: '登陆成功，系统正在进入后台...'
@@ -37,11 +37,8 @@
         function dosubmit(id) {
 
             var loginForm = $('#' + id + 'form');
-
             if (loginForm.form('validate')) {
-
                 var param = loginForm.serialize();
-
                 $.ajax({
                     url        : objs.loginCheckURL + '?' + param,
                     type       : 'GET',
@@ -59,18 +56,15 @@
                                 $('#' + id + 'window').window("close");
                             } catch (e) {
                             }
-
                             try {
                                 eval('reload' + id + 'grid();');
                             } catch (e) {
                             }
-
                         } else {
-                            $('#img_verify')[0].src = '{$src=U(\'img_verify\')}?_=' + new Date().getTime();
+                            $('#img_verify')[0].src = "{{url('img_verify')}}"+"?"+Math.random();
                         }
                     }
                 });
-
                 return true;
             } else {
                 return false;
@@ -107,12 +101,23 @@
 <div class="mlogin_box">
     <img class="mlogin_Img" src="/common/c/bootstrap/img/login_bg.jpg" width="425" height="339" />
     <div class="mlogin_fm">
-        <form id="loginform" method="post" action="{:U('loginCheck')}">
+        <form id="loginform" method="post" action="{{url('loginCheck')}}">
             <ul>
                 <li><span class="mlogin_s1">用户名</span><input class="mlogin_int" name="user" type="text" id="user" data-options="required:true"/></li>
                 <li><span class="mlogin_s1">密 &nbsp;&nbsp; 码</span><input class="mlogin_int" name="pass" type="password" id="pass" data-options="required:true"/></li>
-                <li class="mlogin_li01"><span class="mlogin_s1">验证码</span><input class="mlogin_int mlogin_int2" id="vcode" name="vcode" type="text" data-options="required:true"/><a style='display: inline-block;margin-left:1em;' href="javascript:void($('#img_verify')[0].src='{$src=U(\'img_verify\')}?_='+new Date().getTime())"><img id='img_verify' src="{$src}" style="vertical-align:sub;" title='看不清,换一张'/></a></li>
-                <li class="mlogin_li02"><span class="mlogin_s1">&nbsp;</span><input class="mlogin_chk" name="auto" id="auto" type="checkbox" value="on" /><span class="mlogin_red"><label for="auto">自动登录</label></span><a style='display: inline-block;margin-left:1em;' href="javascript:void($('#img_verify')[0].src='{$src=U(\'img_verify\')}?_='+new Date().getTime())">看不清，换一张</a></li>
+                <li class="mlogin_li01">
+                    <span class="mlogin_s1">验证码</span>
+                    <input class="mlogin_int mlogin_int2" id="vcode" name="vcode" type="text" data-options="required:true"/>
+                    <a style='display: inline-block;margin-left:1em;cursor: pointer;' class="change_code">
+                        <img id='img_verify' src="{{url('img_verify')}}" style="vertical-align:sub;" title='看不清,换一张'/>
+                    </a>
+                </li>
+                <li class="mlogin_li02">
+                    <span class="mlogin_s1">&nbsp;</span>
+                    <input class="mlogin_chk" name="auto" id="auto" type="checkbox" value="on" />
+                    <span class="mlogin_red"><label for="auto">自动登录</label></span>
+                    <a style='display: inline-block;margin-left:1em;cursor: pointer;' class="change_code">看不清，换一张</a>
+                </li>
                 <li class="mlogin_li03"><button type="button" class="mLogin_submit" onclick="dosubmit('login');"><span>登陆</span></button></li>
             </ul>
         </form>
@@ -123,6 +128,9 @@
     var magTop=($(window).height()-153-415)/2;
     $(".mlogin_box").css("margin-top",magTop);
     $(window).resize(function(){var magTop=($(window).height()-153-415)/2;$(".mlogin_box").css("margin-top",magTop);});
+    $('.change_code').click(function(){
+        document.getElementById("img_verify").src="{{url('img_verify')}}"+"?"+Math.random();
+    });
 </script>
 </body>
 </html>

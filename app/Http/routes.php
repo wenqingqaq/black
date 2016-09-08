@@ -21,5 +21,6 @@ Route::get('/', function () {
 Route::group(['namespace'=>'Admin'], function () {
     Route::get('index', 'IndexController@index'); //后台首页
     Route::get('login', 'IndexController@login'); //后台登录界面
+    Route::get('img_verify', 'IndexController@img_verify'); //后台登录界面
     Route::get('getMenuList', 'IndexController@getMenuList'); //获取菜单数据
 });

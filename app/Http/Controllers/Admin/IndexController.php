@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests;
 use App\Server\Admin\AuthorityService;
-use Illuminate\Support\Facades\Response;
+use App\ThirdClass\Verify;
+use Mews\Captcha\Facades\Captcha;
 
 
 class IndexController extends CommonController
@@ -38,7 +39,7 @@ class IndexController extends CommonController
         $service = new AuthorityService();
         $result = $service->getUserAccess($user_info ['uid'], $user_info ['isadmin']);
 
-        return Response::json($result);
+        return $this->ajaxReturn($result);
     }
 
     /**
@@ -49,5 +50,14 @@ class IndexController extends CommonController
     public function login()
     {
         return view('admin.login');
+    }
+
+    /**
+     * 产生验证码图片
+     * create by wenQing
+     */
+    public function img_verify()
+    {
+        return captcha();
     }
 }
