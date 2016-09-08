@@ -6,8 +6,10 @@ use App\Http\Requests;
 use App\Server\Admin\AuthorityService;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Validation\ValidationException;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 
 class IndexController extends CommonController
@@ -51,6 +53,7 @@ class IndexController extends CommonController
      */
     public function login()
     {
+        $s = Cookie::get('platform_login_info');
         return view('admin.login');
     }
 
@@ -70,22 +73,43 @@ class IndexController extends CommonController
      */
     public function loginCheck()
     {
+        $input = Input::all();
         $rules = [
-            'vcode' => 'required|captcha',
             'user' => 'required',
             'pass' => 'required'
         ];
         $message = [
-            'vcode.required' => '验证码不能为空',
-            'vcode.captcha' => '验证码不正确',
             'user.required' => '用户名不能为空',
             'pass.required' => '密码不能为空',
         ];
-        $validator = Validator::make(Input::all(), $rules, $message);
+        //添加一个测试的验证码，方便开发使用的
+        if($input['vcode'] != '1111')
+        {
+            $rules['vcode'] = 'required|captcha';
+            $message['vcode.required'] = '验证码不能为空';
+            $message['vcode.captcha'] = '验证码不正确';
+        }
+        $validator = Validator::make($input, $rules, $message);
         if ($validator->fails())
         {
             return $this->errorReturn($validator->errors()->all());
         }
+
+        try
+        {
+            // 验证用户密码
+            $service = new AuthorityService ();
+            $auto = array_key_exists('auto',$input) ? $input['auto'] : '0';
+            $result = $service->checkUserPass($input['user'], $input['pass'], $auto);
+            session('user_info', $result);
+            //$access = $service->getAllAccessByUid($result ['uid']);
+            //session('user_access', $access);
+        }
+        catch(HttpException $e)
+        {
+            return $this->errorReturn($e->getMessage());
+        }
+
         return $this->successReturn('登录成功!');
     }
 }

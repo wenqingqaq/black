@@ -49,7 +49,6 @@
                     },
                     success    : function(data, textStatus, jqXHR){
                         loading(1);
-                        //$.messager.alert('提示', data.msg);
                         if (data.type == 'suc') {
                             try {
                                 $('#' + id + 'window').window("close");
@@ -60,6 +59,7 @@
                             } catch (e) {
                             }
                         } else {
+                            $.messager.alert('提示', data.msg);
                             $('#img_verify')[0].src = "{{url('img_verify')}}"+"?"+Math.random();
                         }
                     }
@@ -103,7 +103,10 @@
         <form id="loginform" method="post" action="{{url('loginCheck')}}">
             {{csrf_field()}}
             <ul>
-                <li><span class="mlogin_s1">用户名</span><input class="mlogin_int" name="user" type="text" id="user" data-options="required:true"/></li>
+                <li>
+                    <span class="mlogin_s1">用户名</span>
+                    <input class="mlogin_int" name="user" type="text" id="user" data-options="required:true"/>
+                </li>
                 <li><span class="mlogin_s1">密 &nbsp;&nbsp; 码</span><input class="mlogin_int" name="pass" type="password" id="pass" data-options="required:true"/></li>
                 <li class="mlogin_li01">
                     <span class="mlogin_s1">验证码</span>
@@ -118,7 +121,9 @@
                     <span class="mlogin_red"><label for="auto">自动登录</label></span>
                     <a style='display: inline-block;margin-left:1em;cursor: pointer;' class="change_code">看不清，换一张</a>
                 </li>
-                <li class="mlogin_li03"><button type="button" class="mLogin_submit" onclick="dosubmit('login');"><span>登陆</span></button></li>
+                <li class="mlogin_li03">
+                    <button type="button" class="mLogin_submit" onclick="dosubmit('login');"><span>登陆</span></button>
+                </li>
             </ul>
         </form>
     </div>

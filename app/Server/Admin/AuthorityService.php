@@ -7,10 +7,64 @@
  */
 namespace App\Server\Admin;
 
+use App\Model\Admin\User;
 use App\Model\RoleUser;
+use Illuminate\Support\Facades\Cookie;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class AuthorityService
 {
+    /**
+     * 验证用户密码
+     */
+    public function checkUserPass($user, $pass, $auto, $type_user = '0')
+    {
+        $result = User::where('user',$user)->get()->toArray();
+        if (empty ($result))
+        {
+            throw new HttpException('200','用户不存在');
+        }
+        else
+        {
+            $querySalt = $result [0] ['salt'];
+            $queryPass = $result [0] ['pass'];
+        }
+        if (md5($querySalt . $pass) == $queryPass && false === strpos($type_user, $result [0] ['type_user']))
+        {
+            if ($result [0] ['status'] == 0)
+            {
+                throw new HttpException('200','该用户被禁用!');
+            }
+            elseif ($result [0] ['status'] == 2)
+            {
+                throw new HttpException('200','该用户不存在!');
+            }
+            if ($auto == 'on')
+            {
+                $login_info = ['user' => $user, 'pass' => $queryPass];
+                $type_user = $result[0]['type_user'];
+                switch ($type_user)
+                {
+                    case '0':
+                        Cookie::queue('platform_login_info',json_encode($login_info),10);
+                        break;
+                    case '1':
+                        Cookie::queue('business_login_info',json_encode($login_info),'365 * 24 * 60');
+                        break;
+                    case '2':
+                        Cookie::queue('store_login_info',json_encode($login_info),'365 * 24 * 60');
+                        break;
+                }
+            }
+
+            return $result [0];
+        }
+        else
+        {
+            throw new HttpException('200','用户名或密码错误!');
+        }
+    }
+
     public function getUserAccess($uid, $isadmin, $user_type = 0)
     {
         if ( !$isadmin)

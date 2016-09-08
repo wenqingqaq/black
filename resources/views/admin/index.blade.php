@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
+    <title>后台首页</title>
     @include('admin.common')
     <script type="text/javascript" src="/admin/j/menu.js"></script>
     <script type="text/javascript" src="/admin/j/siteNavigation.js"></script>
