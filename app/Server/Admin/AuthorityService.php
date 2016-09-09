@@ -65,6 +65,21 @@ class AuthorityService
         }
     }
 
+    /**
+     * 获取用户权限
+     */
+    public function getAllAccessByUid($uid)
+    {
+        $accessModel = new AccessModel ();
+        $result = $accessModel->selectAccessByUid($uid);
+        foreach ($result as $key => $value)
+        {
+            $access [] = $value;
+        }
+
+        return $access;
+    }
+
     public function getUserAccess($uid, $isadmin, $user_type = 0)
     {
         if ( !$isadmin)

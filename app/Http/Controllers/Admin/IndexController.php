@@ -102,8 +102,8 @@ class IndexController extends CommonController
             $auto = array_key_exists('auto',$input) ? $input['auto'] : '0';
             $result = $service->checkUserPass($input['user'], $input['pass'], $auto);
             session('user_info', $result);
-            //$access = $service->getAllAccessByUid($result ['uid']);
-            //session('user_access', $access);
+            $access = $service->getAllAccessByUid($result ['uid']);
+            session('user_access', $access);
         }
         catch(HttpException $e)
         {
