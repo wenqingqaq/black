@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>演示模版 {:L('TITLE_PW')}</title>
+    <title>区域管理</title>
     <link rel="stylesheet" type="text/css" href="/common/j/jquery-easyui-1.4.1/themes/bootstrap/easyui.css">
     <link rel="stylesheet" type="text/css" href="/common/j/jquery-easyui-1.4.1/themes/icon.css">
     @include('admin.common')

@@ -209,7 +209,7 @@ return [
                     'sub' => [
                         [
                             'name' => '区域信息设置',
-                            'url' => '/System/Area/index'
+                            'url' => url('area/index')
                         ]
                     ]
                 ]
