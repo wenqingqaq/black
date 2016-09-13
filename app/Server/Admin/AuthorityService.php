@@ -7,6 +7,7 @@
  */
 namespace App\Server\Admin;
 
+use App\Model\Admin\Access;
 use App\Model\Admin\User;
 use App\Model\RoleUser;
 use Illuminate\Support\Facades\Cookie;
