@@ -114,4 +114,20 @@ class IndexController extends CommonController
 
         return $this->successReturn('登录成功!');
     }
+
+    /**
+     * 退出登录按钮
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * create by wenQing
+     */
+    public function logout(Request $request)
+    {
+        try{
+            $request->session()->flush(); //清空一下session
+            return redirect('login');
+        }catch(HttpException     $e){
+            $this->errorReturn($e->getMessage());
+        }
+    }
 }

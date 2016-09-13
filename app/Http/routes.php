@@ -24,4 +24,7 @@ Route::group(['namespace'=>'Admin'], function () {
     Route::get('img_verify', 'IndexController@img_verify'); //后台登录验证
     Route::get('loginCheck', 'IndexController@loginCheck'); //后台登录界面
     Route::get('getMenuList', 'IndexController@getMenuList'); //获取菜单数据
+    Route::get('logout', 'IndexController@logout'); //退出登录操作
+
+    Route::resource('area/index', 'AreaController@index'); //区域管理主页
 });

@@ -48,13 +48,13 @@
                                 src="/common/c/bootstrap/img/site.png" height="50px" width="50px" style="cursor: pointer;"
                                 title="网站导航" class="easyui-tooltip" /></a>
 
-                    <a href="{:U('Index/Index/logout')}"> <img
+                    <a href="{{url('logout')}}"> <img
                                 src="/common/c/bootstrap/img/close.png" style="cursor: pointer;"
                                 class="easyui-tooltip" title="退出系统" />
                     </a>
                 </div>
                 <div data-options="region:'center',border:false">
-                    <div class="cat-admin-topname">{$userName}</div>
+                    <div class="cat-admin-topname">{{session('user_info.user')}}</div>
                     <div class="cat-admin-topname" onclick="resetPassword()"><font color="red">修改密码</font></div>
                 </div>
                 <div data-options="region:'center',border:false">
@@ -140,7 +140,7 @@
 <script type="text/javascript">
     objs.menuurl = "{{url('getMenuList')}}";
     objs.getlangurl = "{:U('Index/getlang')}";
-    objs.loginouturl = "{:U('logout')}";
+    objs.loginouturl = "{{url('logout')}}}";
     objs.setpassurl = "{:U('Index/setpass')}";
     //    objs.messageurl = "{:U('Index/message')}";
     //    objs.messagelisturl = "{:U('Index/messagelist')}";
