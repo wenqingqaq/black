@@ -134,7 +134,6 @@ class AuthorityService
             $tmp ['color'] = $v ['color'];
             array_push($arr1, $tmp);
         }
-
         foreach ($menu as $k1 => $v1)
         {
             $arr2 [$k1] = [];
@@ -169,7 +168,7 @@ class AuthorityService
                             if (isset ($v3 ['url']))
                             {
                                 $tmp3 ['id'] = $v3 ['url'];
-                                if ($isadmin || $this->deep_in_array($tmp3 ['id'], $result))
+                                if ($isadmin || deep_in_array($tmp3 ['id'], $result))
                                 {
                                     if ($user_type == 0)
                                     {
@@ -220,6 +219,7 @@ class AuthorityService
         }
 
         $one = [];
+
         foreach ($arr1 as $key => $value)
         {
             foreach ($arr2 [$key] as $uv)
@@ -238,25 +238,5 @@ class AuthorityService
         $arr = ['one' => $one, 'two' => $array];
 
         return $arr;
-    }
-
-    public function deep_in_array($value, $array)
-    {
-        foreach($array as $item) {
-            if(!is_array($item)) {
-                if ($item == $value) {
-                    return true;
-                } else {
-                    continue;
-                }
-            }
-
-            if(in_array($value, $item)) {
-                return true;
-            } else if(deep_in_array($value, $item)) {
-                return true;
-            }
-        }
-        return false;
     }
 }

@@ -54,7 +54,6 @@ class IndexController extends CommonController
      */
     public function login()
     {
-        $s = Cookie::get('platform_login_info');
         return view('admin.login');
     }
 
@@ -103,7 +102,7 @@ class IndexController extends CommonController
             $auto = array_key_exists('auto',$input) ? $input['auto'] : '0';
             $result = $service->checkUserPass($input['user'], $input['pass'], $auto);
             $request->session()->put('user_info', $result);//用户信息保存到session
-            //$request->session()->get('user_info');
+            //$re = $request->session()->get('user_info');
             $access = $service->getAllAccessByUid($result ['uid']);
             $request->session()->put('user_access', $access);//用户权限信息保存到session
         }

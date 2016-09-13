@@ -18,11 +18,11 @@ return [
                     'sub' => [
                         [
                             'name' => '首页',
-                            'url' => ''
+                            'url' => 'index'
                         ],
                         [
                             'name' => '业务设置',
-                            'url' => ''
+                            'url' => 'test'
                         ]
                     ]
                 ],
