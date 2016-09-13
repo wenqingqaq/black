@@ -71,14 +71,14 @@ class AuthorityService
      */
     public function getAllAccessByUid($uid)
     {
-        $accessModel = new AccessModel ();
+        $accessModel = new Access();
         $result = $accessModel->selectAccessByUid($uid);
         foreach ($result as $key => $value)
         {
             $access [] = $value;
         }
 
-        return $access;
+        return $access ? $access : [];
     }
 
     public function getUserAccess($uid, $isadmin, $user_type = 0)

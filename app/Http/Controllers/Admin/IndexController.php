@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests;
+use App\Model\Admin\User;
 use App\Server\Admin\AuthorityService;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Validation\ValidationException;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
@@ -71,7 +73,7 @@ class IndexController extends CommonController
      * create by wenQing
      * @throws AuthorizationException
      */
-    public function loginCheck()
+    public function loginCheck(Request $request)
     {
         $input = Input::all();
         $rules = [
@@ -101,9 +103,10 @@ class IndexController extends CommonController
             $service = new AuthorityService ();
             $auto = array_key_exists('auto',$input) ? $input['auto'] : '0';
             $result = $service->checkUserPass($input['user'], $input['pass'], $auto);
-            session('user_info', $result);
+            $request->session()->put('user_info', $result);//用户信息保存到session
+            //$request->session()->get('user_info');
             $access = $service->getAllAccessByUid($result ['uid']);
-            session('user_access', $access);
+            $request->session()->put('user_access', $access);//用户权限信息保存到session
         }
         catch(HttpException $e)
         {
