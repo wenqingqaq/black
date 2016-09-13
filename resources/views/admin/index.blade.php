@@ -138,7 +138,7 @@
 </div>
 
 <script type="text/javascript">
-    objs.menuurl = "{:U('getMenuList')}";
+    objs.menuurl = "{{url('getMenuList')}}";
     objs.getlangurl = "{:U('Index/getlang')}";
     objs.loginouturl = "{:U('logout')}";
     objs.setpassurl = "{:U('Index/setpass')}";

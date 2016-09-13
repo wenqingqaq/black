@@ -41,9 +41,8 @@ class IndexController extends CommonController
     public function getMenuList()
     {
         $user_info = session('user_info');
-        dd($user_info);
         $service = new AuthorityService();
-        $result = $service->getUserAccess($user_info ['uid'], $user_info ['isadmin']);
+        $result = $service->getUserAccess($user_info['uid'], $user_info['isadmin']);
 
         return $this->ajaxReturn($result);
     }

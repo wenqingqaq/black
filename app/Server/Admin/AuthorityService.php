@@ -8,8 +8,8 @@
 namespace App\Server\Admin;
 
 use App\Model\Admin\Access;
+use App\Model\Admin\RoleUser;
 use App\Model\Admin\User;
-use App\Model\RoleUser;
 use Illuminate\Support\Facades\Cookie;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
@@ -81,12 +81,22 @@ class AuthorityService
         return $access ? $access : [];
     }
 
+    /**
+     * 获取权限列表，菜单显示
+     * @param $uid
+     * @param $isadmin
+     * @param int $user_type
+     * @return array
+     * create by wenQing
+     */
     public function getUserAccess($uid, $isadmin, $user_type = 0)
     {
         if ( !$isadmin)
         {
             $roleUserModel = new RoleUser();
-            $roleId = $roleUserModel->selectRoleUser("uid = {$uid}");
+            //$roleId = $roleUserModel->selectRoleUser("uid = {$uid}");
+
+            $roleId = RoleUser::where('uid','=',$uid)->get()->toArray();
             if ($roleId != null)
             {
                 $n = '';
@@ -95,8 +105,7 @@ class AuthorityService
                     $n .= $roleId [$i] ['role_id'] . ',';
                 }
                 $n = substr($n, 0, -1);
-                $accessModel = D('User/Access');
-                $result = $accessModel->selectAccess("role_id IN ({$n})");
+                $result = Access::whereIn('role_id',[$n])->get()->toArray();
             }
             else
             {
@@ -106,19 +115,18 @@ class AuthorityService
         switch ($user_type)
         {
             case 0 :
-                $menu = C('MENU_CRM');
+                $menu = config('menu.MENU_CRM');
                 break;
             case 1 :
-                $menu = C('MENU_CRM');
+                $menu = config('menu.MENU_CRM');
                 break;
             case 2 :
-                $menu = C('MENU_CRM');
+                $menu = config('menu.MENU_CRM');
                 break;
         }
 
         $arr1 = [];
         $arr2 = [];
-
         $id = 0;
 
         foreach ($menu as $k => $v)
@@ -144,7 +152,7 @@ class AuthorityService
                     }
                     else
                     {
-                        throwErrMsg("菜单配置项有误");
+                        throw new HttpException('200','菜单配置项有误!');
                     }
                     if (isset ($v2 ['sub']))
                     {
@@ -158,7 +166,7 @@ class AuthorityService
                             }
                             else
                             {
-                                throwErrMsg("菜单配置项有误");
+                                throw new HttpException('200','菜单配置项有误!');
                             }
                             if (isset ($v3 ['url']))
                             {
@@ -197,7 +205,7 @@ class AuthorityService
                             }
                             else
                             {
-                                throwErrMsg("菜单配置项有误");
+                                throw new HttpException('200','菜单配置项有误!');
                             }
                         }
                     }

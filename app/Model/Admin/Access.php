@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\DB;
 
 class Access extends Model
 {
+    protected $table = 'access';
+    protected $primaryKey = 'access_id'; //主键
+    public $timestamps = false; //更新时间戳字段
     /**
      * 获取权限通过用户id
      * @param $uid
