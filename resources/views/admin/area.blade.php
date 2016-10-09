@@ -16,10 +16,10 @@
         CONFIG.WESTWINDOWHEIGHT = '200';
         CONFIG.WESTGRIDSORTNAME = 'province';
         CONFIG.WESTGRIDSORTORDER = 'asc';
-        CONFIG.getProvince = "{:U('getProvince')}";
-        CONFIG.getCity = "{:U('getCity')}";
-        CONFIG.getRegion = "{:U('GetRegion')}";
-        CONFIG.addRegion = "{:U('addRegion')}";
+        CONFIG.getProvince = "{{url('area/getProvince')}}";
+        CONFIG.getCity = "{{url('area/getCity')}}";
+        CONFIG.getRegion = "{{url('area/getRegion')}}";
+        CONFIG.addRegion = "{{url('area/addRegion')}}";
         CONFIG.editRegion = "{:U('editRegion')}";
         CONFIG.delRegion = "{:U('delRegion')}";
         CONFIG.addCity = "{:U('addCity')}";

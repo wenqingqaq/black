@@ -28,4 +28,7 @@ Route::group(['namespace'=>'Admin'], function () {
 
     Route::resource('area/index', 'AreaController@index'); //区域管理主页
     Route::resource('area/getProvince', 'AreaController@getProvince'); //获取省份
+    Route::resource('area/getCity', 'AreaController@getCity'); //获取城市
+    Route::resource('area/getRegion', 'AreaController@getRegion'); //获取区域
+    Route::resource('area/addRegion', 'AreaController@addRegion'); //添加区域
 });

@@ -12,6 +12,8 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        //
+        'area/getProvince',
+        'area/getCity',
+        'area/getRegion',
     ];
 }
