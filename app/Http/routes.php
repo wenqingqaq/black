@@ -27,4 +27,5 @@ Route::group(['namespace'=>'Admin'], function () {
     Route::get('logout', 'IndexController@logout'); //退出登录操作
 
     Route::resource('area/index', 'AreaController@index'); //区域管理主页
+    Route::resource('area/getProvince', 'AreaController@getProvince'); //获取省份
 });

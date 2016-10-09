@@ -20,7 +20,7 @@ class AreaController extends CommonController
     /**
      * 获取省份列表
      */
-    public function getProvinceAction(Request $request)
+    public function getProvince(Request $request)
     {
         $this->setDbRead();
         $service = new AreaModel();
@@ -30,7 +30,7 @@ class AreaController extends CommonController
         $rows = Input::post('rows');
         $page = Input::post('page');
         $name = Input::post('name');
-
+        dd('123123');
         $where = '1=1 ';
         if (! empty ( $name )) {
             $where .= " and province like '%{$name}%'";
@@ -39,7 +39,7 @@ class AreaController extends CommonController
         $start = ($page - 1) * $rows;
         $limit = "{$start},{$rows}";
 
-        $return = $service->getSomeProvinceItemForPage ( $where, '*', $limit, $order );
+        $return = $service->getSomeProvinceItemForPage($where,'*',$limit,$order);
 
         echo json_encode ( array (
             'total' => $return ['data'] ['count'],
