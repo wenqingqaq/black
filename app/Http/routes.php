@@ -26,9 +26,13 @@ Route::group(['namespace'=>'Admin'], function () {
     Route::get('getMenuList', 'IndexController@getMenuList'); //获取菜单数据
     Route::get('logout', 'IndexController@logout'); //退出登录操作
 
+    //区域管理
     Route::resource('area/index', 'AreaController@index'); //区域管理主页
     Route::resource('area/getProvince', 'AreaController@getProvince'); //获取省份
     Route::resource('area/getCity', 'AreaController@getCity'); //获取城市
     Route::resource('area/getRegion', 'AreaController@getRegion'); //获取区域
     Route::resource('area/addRegion', 'AreaController@addRegion'); //添加区域
+
+    //权限控制
+
 });

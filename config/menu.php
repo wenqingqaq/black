@@ -204,6 +204,19 @@ return [
             'color' => '#7fa936',
             'cls' => 'xitong.png', // 结点css的class，可选
             'sub' => [
+                [
+                    'name' => '账号权限管理',
+                    'sub' => [
+                        [
+                            'name' => '平台角色管理',
+                            'url' => '/Manager/RoleManagement/index'
+                        ],
+                        [
+                            'name' => '平台用户管理',
+                            'url' => '/Manager/Management/index'
+                        ]
+                    ]
+                ],
                 [  // 子结点，可选，最多3级
                     'name' => '系统设置',
                     'sub' => [
