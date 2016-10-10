@@ -34,5 +34,6 @@ Route::group(['namespace'=>'Admin'], function () {
     Route::resource('area/addRegion', 'AreaController@addRegion'); //添加区域
 
     //权限控制
-
+    Route::resource('role/index', 'RoleController@index'); //角色界面
+    Route::resource('role/getRoleList', 'RoleController@getRoleList'); //角色列表
 });
