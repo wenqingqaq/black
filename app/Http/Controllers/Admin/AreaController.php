@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests;
 use App\Model\Admin\AreaModel;
+use App\Server\Admin\AreaService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class AreaController extends CommonController
 {
@@ -94,6 +96,39 @@ class AreaController extends CommonController
         echo json_encode ( array (
             'total' => $count,
             'rows' => $return
+        ) );
+    }
+
+    /**
+     * 添加区域
+     * create by wenQing
+     */
+    public function addRegion(Request $request)
+    {
+        $this->setDbWrite ();
+        dd($request->input('city_id'));
+        echo json_encode([
+            'message' => 'test',
+            'status' => 1
+        ]);
+        die;
+        $service = new AreaService();
+        try
+        {
+            $return = $service->addRegion(I('post.'));
+
+            //重新生成区域js文件 暂时不需要生成js文件
+            $service -> generateRegionJs();
+        } catch(HttpException $e){
+            $this->ajaxReturn ( array (
+                'message' => $e->getMessage (),
+                'status' => 0
+            ) );
+        }
+
+        $this->ajaxReturn ( array (
+            'message' => $return ['info'],
+            'status' => $return ['status']
         ) );
     }
 }

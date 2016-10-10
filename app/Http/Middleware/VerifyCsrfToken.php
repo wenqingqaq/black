@@ -15,5 +15,6 @@ class VerifyCsrfToken extends BaseVerifier
         'area/getProvince',
         'area/getCity',
         'area/getRegion',
+        'area/addRegion',
     ];
 }
