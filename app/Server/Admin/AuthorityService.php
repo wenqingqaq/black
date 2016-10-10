@@ -8,6 +8,7 @@
 namespace App\Server\Admin;
 
 use App\Model\Admin\Access;
+use App\Model\Admin\Role;
 use App\Model\Admin\RoleUser;
 use App\Model\Admin\User;
 use Illuminate\Support\Facades\Cookie;
@@ -258,5 +259,11 @@ class AuthorityService
             }
         }
         return false;
+    }
+
+    public function getRoleList($role_type,$limit = '')
+    {
+        $role = Role::where('role_type','=',$role_type)->get();
+        dd($role);
     }
 }
