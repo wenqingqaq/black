@@ -251,9 +251,11 @@ class AuthorityService
      */
     public function getRoleList($role_type,$start = '',$rows = '')
     {
-        //$role = Role::where('role_type','=',$role_type)->offset(3)->limit(5)->toSql();
-        $role = Role::where('role_type','=',$role_type)->offset($start)->limit($rows)->get()->toArray();
-        $count = Role::where('role_type','=',$role_type)->offset($start)->limit($rows)->count();
+        $temp = Role::where('role_type','=',$role_type);
+        if($start) $temp = $temp->offset($start);
+        if($rows) $temp = $temp->limit($rows);
+        $role = $temp->get()->toArray();
+        $count = Role::where('role_type','=',$role_type)->count();
 
         return [
             'data' => $role,
@@ -261,6 +263,36 @@ class AuthorityService
         ];
     }
 
+    /**
+     * 获取用户列表
+     * @param $user_type
+     * @param string $start
+     * @param string $rows
+     * @return array
+     * create by wenQing
+     */
+    public function getUserList($user_type,$start = '',$rows = '')
+    {
+
+        $temp = User::where('type_user','=',$user_type);
+        if($start) $temp = $temp->offset($start);
+        if($rows) $temp = $temp->limit($rows);
+        $role = $temp->get()->toArray();
+        $count = User::where('type_user','=',$user_type)->count();
+
+        return [
+            'data' => $role,
+            'count' => $count
+        ];
+    }
+
+    /**
+     * 获取菜单列表
+     * @param $role_id
+     * @param int $type_user
+     * @return array
+     * create by wenQing
+     */
     public function getMenuList($role_id, $type_user = 0)
     {
         // 读取该角色拥有权限
@@ -413,5 +445,39 @@ class AuthorityService
             ];
         }
         Access::insert($data);
+    }
+
+    /**
+     * 获取用户角色列表
+     * @param $uid
+     * @param $role_type
+     * @return array|mixed
+     * create by wenQing
+     */
+    public function getRoleUserList($uid, $role_type)
+    {
+        $isadmin = User::where('uid',$uid)->get()->toArray();
+        if ($isadmin [0] ['isadmin'])
+        {
+            return [];
+        }
+
+        $data = $this->getRoleList($role_type);
+        $result = $data['data'];
+        // 用户当前拥有的角色
+        $result2 = RoleUser::where('uid',$uid)->get()->toArray();
+        if (empty ($result2))
+        {
+            return $result;
+        }
+        foreach ($result as $key => &$value)
+        {
+            if ($this->deep_in_array($value ['role_id'], $result2))
+            {
+                $value ['check'] = true;
+            }
+        }
+
+        return $result;
     }
 }

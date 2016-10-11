@@ -41,4 +41,8 @@ Route::group(['namespace'=>'Admin'], function () {
     Route::resource('role/delete', 'RoleController@delete'); //删除角色
     Route::resource('role/getAuthList', 'RoleController@getAuthList'); //权限列表
     Route::resource('role/saveRoleAuthority', 'RoleController@saveRoleAuthority'); //权限列表
+
+    Route::resource('user/index', 'UserController@index'); //用户界面
+    Route::resource('user/getUserList', 'UserController@getUserList'); //用户列表数据
+    Route::resource('user/getRoleUserList', 'UserController@getRoleUserList'); //用户列表数据
 });
