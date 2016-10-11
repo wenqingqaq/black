@@ -6,6 +6,33 @@
  * Date: 2016/9/7
  * Time: 16:59
  */
+define('USER_MSG_TYPE_SUC','suc');
+define('USER_MSG_TYPE_FAILE','!OK');
+define('USER_MSG_TYPE_INFO','info');	//用户可见的错误提示信息
+define('USER_MSG_TYPE_ERROR','error');	//程序员可见，用户不应看到的错误提示信息
+
+define('STATUS_INVALID',0);
+define('STATUS_VALID',1);
+define('STATUS_DELETED',2);
+
+define('STATUS_CHECK_WAITING', 1);
+define('STATUS_CHECK_PASS', 2);
+define('STATUS_CHECK_UNPASS', 3);
+
+//定义用户类型常量
+define('USER_TYPE_PLATFORM', 0);
+define('USER_TYPE_COMMERCIAL', 1);
+define('USER_TYPE_STORE', 2);
+define('USER_TYPE_LOGISTICS', 3);
+define('USER_TYPE_DISTRIBUTION', 4);
+
+//定义角色类型常量
+define('ROLE_TYPE_PLATFORM', 0);
+define('ROLE_TYPE_COMMERCIAL', 1);
+define('ROLE_TYPE_STORE', 2);
+define('ROLE_TYPE_LOGISTICS', 3);
+define('ROLE_TYPE_DISTRIBUTION', 4);
+
 return [
     'MENU_CRM' => [
         [

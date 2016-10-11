@@ -36,4 +36,9 @@ Route::group(['namespace'=>'Admin'], function () {
     //权限控制
     Route::resource('role/index', 'RoleController@index'); //角色界面
     Route::resource('role/getRoleList', 'RoleController@getRoleList'); //角色列表
+    Route::resource('role/add', 'RoleController@add'); //添加角色
+    Route::resource('role/edit', 'RoleController@edit'); //编辑角色
+    Route::resource('role/delete', 'RoleController@delete'); //删除角色
+    Route::resource('role/getAuthList', 'RoleController@getAuthList'); //权限列表
+    Route::resource('role/saveRoleAuthority', 'RoleController@saveRoleAuthority'); //权限列表
 });

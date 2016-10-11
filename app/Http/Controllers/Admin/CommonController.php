@@ -16,7 +16,7 @@ class CommonController extends Controller
      * @return mixed
      * create by wenQing
      */
-    public function ajaxReturn($result)
+    protected function ajaxReturn($result)
     {
         return Response::json($result);
     }

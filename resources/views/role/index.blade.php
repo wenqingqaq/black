@@ -8,10 +8,10 @@
         //获取角色列表
         Obj.getRoleListUrl = "{{url('role/getRoleList')}}";
         //获取权限列表
-        Obj.getAuthListUrl = "{:U('getAuthList')}";
-        Obj.addUrl = "{:U('add')}";
-        Obj.editUrl = "{:U('edit')}";
-        Obj.delUrl = "{:U('delete')}";
+        Obj.getAuthListUrl = "{{url('role/getAuthList')}}";
+        Obj.addUrl = "{{url('role/add')}}";
+        Obj.editUrl = "{{url('role/edit')}}";
+        Obj.delUrl = "{{url('role/delete')}}";
         Obj.roleTitle = "平台角色管理";
         Obj.roleColumns = [ {
             field : 'role',
@@ -127,7 +127,7 @@
                             param[n.id] = n.text;
                         }
                     });
-                    $.post("{:U('saveRoleAuthority')}", {
+                    $.post("{{url('role/saveRoleAuthority')}}", {
                         roleId : row.role_id,
                         access : param
                     }, function(data) {

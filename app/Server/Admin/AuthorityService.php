@@ -241,7 +241,126 @@ class AuthorityService
         return $arr;
     }
 
-    public function deep_in_array($value, $array)
+    /**
+     * 获取角色列表数据
+     * @param $role_type
+     * @param string $start
+     * @param string $rows
+     * @return mixed
+     * create by wenQing
+     */
+    public function getRoleList($role_type,$start = '',$rows = '')
+    {
+        //$role = Role::where('role_type','=',$role_type)->offset(3)->limit(5)->toSql();
+        $role = Role::where('role_type','=',$role_type)->offset($start)->limit($rows)->get()->toArray();
+        $count = Role::where('role_type','=',$role_type)->offset($start)->limit($rows)->count();
+
+        return [
+            'data' => $role,
+            'count' => $count
+        ];
+    }
+
+    public function getMenuList($role_id, $type_user = 0)
+    {
+        // 读取该角色拥有权限
+        $result = Access::whereIn('role_id',explode(',',$role_id))->get()->toArray();
+
+        if (empty ($result))
+        {
+            $result = [];
+        }
+        switch ($type_user)
+        {
+            case USER_TYPE_PLATFORM :
+                $menuData = config('menu.MENU_CRM');;
+                break;
+            case USER_TYPE_COMMERCIAL :
+                $menuData = config('menu.MENU_CRM');;
+                break;
+            case USER_TYPE_STORE :
+                $menuData = config('menu.MENU_CRM');;
+                break;
+        }
+        $menuList = [];
+        if ( !empty ($menuData))
+        {
+            $menuList = $this->createMenuByRecursion($menuData, $result, $type_user);
+        }
+
+        return $menuList;
+    }
+
+    /**
+     * 产生递归菜单
+     * @param $menuData
+     * @param $access
+     * @param $type_user
+     * @return array
+     * create by wenQing
+     */
+    public function createMenuByRecursion($menuData, $access, $type_user)
+    {
+        $menuList = [];
+        foreach ($menuData as $k => $v)
+        {
+            $tmp = [];
+            if (isset ($v ['name']))
+            {
+                $tmp ['text'] = $v ['name'];
+            }
+            else
+            {
+                throw new HttpException(200,'菜单配置项有误');
+            }
+            if (isset ($v ['url']))
+            {
+                $tmp ['id'] = $v ['url'];
+                if ($this->deep_in_array($tmp ['id'], $access))
+                {
+                    $tmp ['checked'] = true;
+                }
+            }
+            if (isset ($v ['cls']))
+            {
+                $tmp ['iconCls'] = $v ['cls'];
+            }
+            if (isset ($v ['sub']))
+            {
+                $sub = $this->createMenuByRecursion($v ['sub'], $access, $type_user);
+                $tmp ['children'] = $sub;
+            }
+            if (isset ($v ['user_type']))
+            {
+                if ($type_user == USER_TYPE_PLATFORM)
+                {
+                    array_push($menuList, $tmp);
+                }
+                elseif ($type_user == USER_TYPE_COMMERCIAL)
+                {
+                    if (in_array(USER_TYPE_COMMERCIAL, $v ['user_type']))
+                    {
+                        array_push($menuList, $tmp);
+                    }
+                }
+                else
+                {
+                    if (in_array(USER_TYPE_STORE, $v ['user_type']))
+                    {
+                        array_push($menuList, $tmp);
+                    }
+                }
+            }
+            else
+            {
+                array_push($menuList, $tmp);
+            }
+        }
+
+        return $menuList;
+    }
+
+    public function deep_in_array   ($value, $array)
     {
         foreach($array as $item) {
             if(!is_array($item)) {
@@ -254,16 +373,45 @@ class AuthorityService
 
             if(in_array($value, $item)) {
                 return true;
-            } else if(deep_in_array($value, $item)) {
+            } else if($this->deep_in_array($value, $item)) {
                 return true;
             }
         }
         return false;
     }
 
-    public function getRoleList($role_type,$limit = '')
+    /**
+     * 添加角色
+     */
+    public function addRole($roles, $remark, $role_type, $uid)
     {
-        $role = Role::where('role_type','=',$role_type)->get();
-        dd($role);
+        $role = new Role();
+        $role->role = $roles;
+        $role->remark = $remark;
+        $role->role_type = $role_type;
+        $role->uid_owner = $uid;
+        $result = $role->save();
+
+        return $result;
+    }
+
+    /**
+     * 保存角色的权限
+     * @param $role_id
+     * @param $access
+     * create by wenQing
+     */
+    public function saveRoleAccess($role_id,$access)
+    {
+        Access::where('role_id',$role_id)->delete(); //删除原来的权限
+        $data = [];
+        foreach($access as $k => $v)
+        {
+            $data[] = [
+                'url' => $k,
+                'role_id' => $role_id
+            ];
+        }
+        Access::insert($data);
     }
 }
