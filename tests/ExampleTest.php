@@ -13,7 +13,14 @@ class ExampleTest extends TestCase
      */
     public function testBasicExample()
     {
+//        $this->visit('/test')
+//            ->type('Taylor', 'name')
+//            ->check('terms')
+//            ->press('Register')
+//            ->dontSee('laravel 5');
+
         $this->visit('/')
-             ->see('Laravel 5');
+            ->see('Laravel 5')
+            ->dontSee('Rails');
     }
 }

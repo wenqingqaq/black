@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//测试一下laravel的单元测试的使用
+Route::get('/test',function(){
+    return view('test');
+});
+
 /**
  * 后台模块显示
  */
