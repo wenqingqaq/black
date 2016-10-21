@@ -36,7 +36,7 @@ define('ROLE_TYPE_DISTRIBUTION', 4);
 return [
     'MENU_CRM' => [
         [
-            'name' => '站点拓展', // 显示名称
+            'name' => '博客管理', // 显示名称
             'color' => '#ff834c',
             'cls' => 'shanghu0.png', // 结点css的class，可选
             'sub' => [
@@ -48,21 +48,17 @@ return [
                             'url' => 'index'
                         ],
                         [
-                            'name' => '业务设置',
+                            'name' => '设置',
                             'url' => 'test'
                         ]
                     ]
                 ],
                 [
-                    'name' => '信息管理',
+                    'name' => '博客管理',
                     'sub' => [
                         [
-                            'name' => '全部楼盘信息',
-                            'url' => '/CRM/Project/index'
-                        ],
-                        [
-                            'name' => '我的楼盘信息',
-                            'url' => '/CRM/userProject/index'
+                            'name' => '博客列表',
+                            'url' => 'blog/index'
                         ]
                     ]
                 ],

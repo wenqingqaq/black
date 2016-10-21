@@ -53,4 +53,7 @@ Route::group(['namespace'=>'Admin'], function () {
     Route::resource('user/index', 'UserController@index'); //用户界面
     Route::resource('user/getUserList', 'UserController@getUserList'); //用户列表数据
     Route::resource('user/getRoleUserList', 'UserController@getRoleUserList'); //用户列表数据
+
+    Route::get('blog/index', 'BlogController@index'); //博客首页界面
+    Route::get('blog/getList', 'BlogController@getList'); //博客列表信息
 });
