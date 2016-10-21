@@ -11,13 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 //测试一下laravel的单元测试的使用
 Route::get('/test',function(){
     return view('test');
+});
+
+/**
+ * 前台界面显示区域
+ */
+Route::group(['namespace'=>'Home'], function () {
+    Route::get('/','IndexController@index');
 });
 
 /**
