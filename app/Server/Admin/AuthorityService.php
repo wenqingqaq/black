@@ -122,7 +122,6 @@ class AuthorityService
                 $menu = config('menu.MENU_CRM');
                 break;
         }
-
         $arr1 = [];
         $arr2 = [];
         $id = 0;

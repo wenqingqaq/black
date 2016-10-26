@@ -6,68 +6,43 @@
     @include('admin.common')
     <script type="text/javascript">
         CONFIG.GRIDTITLE = '全部博客列表';
-        CONFIG.getlisturl = "{:U('blog/getList')}";
-        CONFIG.addurl = "{:U('add')}";
-        CONFIG.editurl = "{:U('edit')}";
-        CONFIG.disurl = "{:U('dis')}";
+        CONFIG.getlisturl = "{{url('blog/getList')}}";
+        CONFIG.addurl = "{{url('blog/add')}}";
+        CONFIG.editurl = "{{url('blog/edit')}}";
+        CONFIG.disurl = "{{url('blog/dis')}}";
         CONFIG.COLUMNS = [
             {
                 field : 'ck',
                 checkbox : true
             },
             {
-                field : 'project_id',
+                field : 'id',
                 title : '编号',
                 width : 80
             },
             {
-                field : 'project',
-                title : '大厦名字',
+                field : 'title',
+                title : '博客标题',
                 width : 100
             },
             {
-                field : 'address',
-                title : '地址',
+                field : 'name',
+                title : '分类',
                 width : 200
             },
             {
-                field : 'wuyecompanyname',
-                title : '相关物业',
-                width : 80
-            },
-            {
-                field : 'contactername',
-                title : '相关联系人',
-                width : 80
-            },
-            {
-                field : 'progress',
-                title : '进度',
-                width : 80
-            },
-            {
-                field : 'status',
-                title : '状态',
-                width : 80
-            },
-            {
-                field : 'brand_id',
-                title : '认领人',
-                width : 80
-            },
-            {
-                field : 'brand_id',
-                title : '相关记录',
-                width : 80
-            },
-            {
-                field : 'remark',
-                title : '备注',
-                width : 80
+                field : 'body',
+                title : '缩略文字',
+                width : 500
             },
             {
                 field : 'create_time',
-                title : '加入时间',
+                title : '创建时间',
+                width : 200
+            },
+            {
+                field : 'update_time',
+                title : '更新时间',
                 width : 200
             }
         ];
@@ -76,36 +51,16 @@
 
             //搜索状态的下拉菜单
             $("#rlStatus").combobox({
-                url:"{:U('getRlStatus')}",
-                valueField:'status_id',
-                textField:'status_name'
+                url:"{{url('blog/getCategory')}}",
+                valueField:'id',
+                textField:'name'
             });
 
-            //搜索进度的下拉菜单
-            $("#hzProgress").combobox({
-                url:"{:U('getProgressStatus')}",
-                valueField:'status_id',
-                textField:'status_name'
-            });
-
-            //新增大厦物业下拉框
-            $("#wuye_company_id").combobox({
-                url:"{:U('getWuYeList')}",
-                valueField:'status_id',
-                textField:'status_name',
-                onSelect:function(record){
-                    //触发选择下拉框改变的事件
-                    var wuYeCompanyId = record.status_id;
-
-                    $("#wuye_contacter_id").combobox({
-                        url:"{:U('getLxrForSelect')}",
-                        valueField:'contacter_id',
-                        textField:'name',
-                        onBeforeLoad : function(param) {
-                            param.wuYeCompanyId = wuYeCompanyId;// 参数:CodeType值.
-                        }
-                    });
-                }
+            //博客分类获取
+            $("#category").combobox({
+                url:"{{url('blog/getCategory')}}",
+                valueField:'id',
+                textField:'name'
             });
 
         });
@@ -126,7 +81,7 @@
                 fit : true,
                 border : false,
                 striped : true,
-                loadMsg : '{$Think.lang.LOADING_DATA}',
+                loadMsg : '加载中。。',
                 rownumbers : true,
                 pagination : true,
                 nowrap : false,
@@ -187,11 +142,11 @@
 
         });
 
-        function addData() {
+        function addData()
+        {
             objs.dataform.attr('action', CONFIG.addurl);
             objs.datawindow.window('open');
             objs.dataform.form('load', objs.dataformdefault);
-
         }
 
         function editData() {
@@ -258,77 +213,70 @@
             <a onclick="del()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">认领</a>
         </div>
         <form id="searchform" onsubmit="return false;" style="padding: 5px 0 5px 8px">
-            城市
-            <input type="text" name="city_id" class="cat-search-input easyui-combobox" style="width:100px;" />
-            区域
-            <input type="text" name="region_id" class="cat-search-input easyui-combobox" style="width:100px;" />
-            请输入大厦名：
+            请输入博客名：
             <input type="text" name="project" class="cat-input cat-search-input" />
-            认领状态：
+            博客分类：
             <input type="text" name="status" id="rlStatus" class="cat-search-input easyui-combobox" />
-            合作进度
-            <input type="text" name="progress" id="hzProgress" class="cat-search-input easyui-combobox" />
             <a class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="reloaddatagrid();">搜索</a>
         </form>
     </div>
 </div>
 
-<div id="datawindow" title="新增楼盘">
+<div id="datawindow" title="新增">
     <div class="easyui-layout" fit="true" style="border: 0;">
         <div data-options="region:'center'" style="width: 50px; border: 0;">
             <form id="dataform" class="cat-form" method="post">
                 <table>
                     <tr>
-                        <td><input type="hidden" id="project_id" name="project_id">
-                            <input type="hidden" id="bus_id" name="bus_id"> <!-- <input type="hidden" name="region_id"> -->
+                        <td>
+                            <input type="hidden" id="id" name="id">
                         </td>
                     </tr>
                     <tr>
-                        <td class="cat-label">大厦名：</td>
-                        <td><input name="project" id = "project" type="text" class="cat-input easyui-validatebox" required="required"></td>
+                        <td class="cat-label">标题：</td>
+                        <td><input name="title" id="title" type="text" class="cat-input easyui-validatebox" required="required"></td>
                     </tr>
                     <tr>
-                        <td class="cat-label">物业：</td>
-                        <td><input name="wuye_company_id" id="wuye_company_id" class="easyui-combobox easyui-validatebox"  /></td>
+                        <td class="cat-label">作者：</td>
+                        <td><input name="auth" id="auth" type="text" class="cat-input easyui-validatebox"></td>
                     </tr>
                     <tr>
-                        <td class="cat-label">物业联系人：</td>
-                        <td><input name="wuye_contacter_id" id = "wuye_contacter_id" class="easyui-combobox easyui-validatebox"></td>
+                        <td class="cat-label">创建时间：</td>
+                        <td>
+                            <input name="create_time" id="create_time" type="text" class="cat-input easyui-datetimebox" data-options="showSeconds:false" value="{{date('Y-m-d H:i:s')}}" >
+                        </td>
                     </tr>
                     <tr>
-                        <td class="cat-label">地区：</td>
-                        <td style="width:500px;"><include file="Public/regional" /></td>
+                        <td class="cat-label">博客分类：</td>
+                        <td><input name="category" id="category" class="easyui-combobox easyui-validatebox"  /></td>
                     </tr>
                     <tr>
-                        <td class="cat-label">大厦地址：</td>
-                        <td><input type="text" id="address"
-                                   onblur="javascript:addressMap()" name="address"
-                                   class="cat-input  easyui-validatebox"
-                                   data-options="required:true" /> <br>
-                            <div class="cat-messeager" style="margin: 0; padding: 0;">请以地图选择的地址为准，否则无法正确计算距离</span></div>
-                        <td><input type="hidden" name="lng" id="longitude"
-                                   readonly="readonly" style="width: 110px;" /> <input
-                                    type="hidden" name="lat" id="latitude" readonly="readonly"
-                                    style="width: 110px;" /></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td class="cat-label">
-                            <div id="dituContent" style="margin: 0px; width: 400px; height: 300px; border: 1px solid #808080;"></div>
-                            <div class="cat-messeager" style=" margin: 0; padding: 0; width: 400px; text-align: left;">请在地图上点击云超市所在位置，可以通过放大地图选择更加精确的位置。系统会自动计算坐标和地址信息。</div>
+                        <td class="cat-label">文章</td>
+                        <td>
+                            <!-- 加载编辑器的容器 -->
+                            <script id="container" name="body" type="text/plain" style="width:630px; height:500px;">
+                            </script>
                         </td>
                     </tr>
                 </table>
             </form>
         </div>
-        <div data-options="region:'south'"
-             style="height: 50px; border-left: 0px; border-right: 0px; border-bottom: 0px; padding-top: 12px"
-             align="center">
-            <a onclick="dosubmit('data')" class="easyui-linkbutton"
-               iconCls="icon-save">保存</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
-                    onclick="windowclose('data')" class="easyui-linkbutton" iconCls="icon-undo">取消</a>
+        <div data-options="region:'south'" style="height: 50px; border-left: 0px; border-right: 0px; border-bottom: 0px; padding-top: 12px" align="center">
+            <a onclick="dosubmit('data')" class="easyui-linkbutton" iconCls="icon-save">保存</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a onclick="windowclose('data')" class="easyui-linkbutton" iconCls="icon-undo">取消</a>
         </div>
     </div>
+    <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        var ue = UE.getEditor('container', {
+            toolbars: [
+                ['fullscreen', 'source', 'undo', 'redo'],
+                ['bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc']
+            ],
+            autoHeightEnabled: true,
+            autoFloatEnabled: true
+        });
+    </script>
 </div>
 
 </div>

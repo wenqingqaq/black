@@ -17,6 +17,6 @@ class Blog extends Authenticatable
      */
     public function category()
     {
-        return $this->hasOne('App\Model\Blog\BlogCategory');
+        return $this->belongsTo('App\Model\Blog\BlogCategory');
     }
 }

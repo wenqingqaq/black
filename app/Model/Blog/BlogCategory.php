@@ -10,4 +10,8 @@ class BlogCategory extends Authenticatable
     protected $primaryKey = 'id'; //主键
     public $timestamps = false; //更新时间戳字段
 
+    public function blog()
+    {
+        return $this->hasMany('App\Model\Blog\Blog','c_id');
+    }
 }
