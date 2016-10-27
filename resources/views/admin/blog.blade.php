@@ -7,8 +7,8 @@
     <script type="text/javascript">
         CONFIG.GRIDTITLE = '全部博客列表';
         CONFIG.getlisturl = "{{url('blog/getList')}}";
-        CONFIG.addurl = "{{url('blog/add')}}";
-        CONFIG.editurl = "{{url('blog/edit')}}";
+        CONFIG.addurl = "{{url('blog/option')}}";
+        CONFIG.editurl = "{{url('blog/option')}}";
         CONFIG.disurl = "{{url('blog/dis')}}";
         CONFIG.COLUMNS = [
             {
@@ -156,15 +156,11 @@
                 objs.datawindow.window('open');
                 objs.dataform.form('load', objs.dataformdefault);
                 objs.dataform.form('load', row);
-                $("#wuye_contacter_id").combobox({
-                    url:"{:U('getLxrForSelect')}",
-                    valueField:'contacter_id',
-                    textField:'name',
-                    onBeforeLoad : function(param) {
-                        param.wuYeCompanyId = row.wuye_company_id;// 参数:CodeType值.
-                    }
+                $('#id').val(row.id);
+                $("#category").combobox('setValue',row.c_id); //设置一下默认value值
+                ue.ready(function() {
+                    ue.setContent(row.body);
                 });
-                $("#wuye_contacter_id").combobox('setValue',row.wuye_contacter_id); //设置一下默认value值
             } else {
                 showMsg('请选择要编辑的数据！');
             }
@@ -205,12 +201,11 @@
 <div data-options="region:'center',border:false">
     <div id="datagrid"></div>
     <div id="toolbar">
-
         <div class="cat-toobarmenus">
             <a class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="addData()">添加</a>
             <a class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editData()">编辑</a>
             <a onclick="disData()" class="easyui-linkbutton" iconCls="icon-tip" plain="true">启用/禁用</a>
-            <a onclick="del()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">认领</a>
+            <a onclick="del()" class="easyui-linkbutton" iconCls="icon-cancel" plain="true">删除</a>
         </div>
         <form id="searchform" onsubmit="return false;" style="padding: 5px 0 5px 8px">
             请输入博客名：
@@ -254,7 +249,7 @@
                         <td class="cat-label">文章</td>
                         <td>
                             <!-- 加载编辑器的容器 -->
-                            <script id="container" name="body" type="text/plain" style="width:630px; height:500px;">
+                            <script id="body" name="body" type="text/plain" style="width:630px; height:500px;">
                             </script>
                         </td>
                     </tr>
@@ -268,7 +263,7 @@
     </div>
     <!-- 实例化编辑器 -->
     <script type="text/javascript">
-        var ue = UE.getEditor('container', {
+        var ue = UE.getEditor('body', {
             toolbars: [
                 ['fullscreen', 'source', 'undo', 'redo'],
                 ['bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc']

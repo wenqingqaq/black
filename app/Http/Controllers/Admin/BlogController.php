@@ -58,4 +58,36 @@ class BlogController extends CommonController
 
         return $this->ajaxReturn($re);
     }
+
+    /**
+     * 博客操作
+     * @param Request $request
+     * @return mixed
+     * create by wenQing
+     */
+    public function option(Request $request)
+    {
+        $this->setDbRead();
+        $blog = new Blog();
+        if($request->id)
+        {
+            //更新操作
+            $re = Blog::where('id',$request->id)->update([
+                'title' => $request->title,
+                'c_id' => $request->category,
+                'auth' => $request->auth,
+                'body' => $request->body,
+            ]);
+        }
+        else
+        {
+            $blog->title = $request->title;
+            $blog->c_id = $request->category;
+            $blog->auth = $request->auth;
+            $blog->body = $request->body;
+            $blog->create_time = date('Y-m-d H:i:s');
+            $re = $blog->save();
+        }
+        return $this->successReturn('博客操作成功！',$re);
+    }
 }

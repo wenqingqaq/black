@@ -49,7 +49,7 @@
                     },
                     success    : function(data, textStatus, jqXHR){
                         loading(1);
-                        if (data.type == 'suc') {
+                        if (data.status == 1) {
                             try {
                                 $('#' + id + 'window').window("close");
                             } catch (e) {
@@ -59,7 +59,7 @@
                             } catch (e) {
                             }
                         } else {
-                            $.messager.alert('提示', data.msg);
+                            $.messager.alert('提示', data.message);
                             $('#img_verify')[0].src = "{{url('img_verify')}}"+"?"+Math.random();
                         }
                     }

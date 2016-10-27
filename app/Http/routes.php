@@ -55,6 +55,7 @@ Route::group(['namespace'=>'Admin'], function () {
     Route::resource('user/getRoleUserList', 'UserController@getRoleUserList'); //用户列表数据
 
     Route::resource('blog/index', 'BlogController@index'); //博客首页界面
+    Route::resource('blog/option', 'BlogController@option'); //博客操作
     Route::resource('blog/getList', 'BlogController@getList'); //博客列表信息
     Route::resource('blog/getCategory', 'BlogController@getCategory'); //博客分类信息
 });

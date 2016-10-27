@@ -35,9 +35,9 @@ class CommonController extends Controller
             DB::rollBack();
         }
         return Response::json([
-            'type' => 'error',
+            'status' => 0,
             'data' => $data ? $data : [],
-            'msg' => $msg ? $msg : 'error'
+            'message' => $msg ? $msg : 'error'
         ]);
     }
 
@@ -55,9 +55,9 @@ class CommonController extends Controller
             DB::commit();
         }
         return Response::json([
-            'type' => 'suc',
+            'status' => 1,
             'data' => $data ? $data : [],
-            'msg' => $msg ? $msg : 'success'
+            'message' => $msg ? $msg : 'success'
         ]);
     }
 
