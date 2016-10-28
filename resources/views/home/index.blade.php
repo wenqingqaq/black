@@ -2,24 +2,29 @@
 <html>
 <head>
     <meta charset="gb2312">
-    <title>段亮个人博客</title>
+    <title>个人博客</title>
     <meta name="keywords" content="个人博客模板,博客模板" />
     <meta name="description" content="优雅、稳重、大气,低调。" />
     <link href="css/index.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="js/html5.js"></script>
     <![endif]-->
+    <script src="{{asset('js/vue.js')}}" type="text/javascript"></script>
 </head>
 <body>
+<script type="text/javascript">
+    var blog = '<?php echo $blog;?>';
+    //console.log(eval(blog));
+</script>
 <header>
     <div id="logo"><a href="/"></a></div>
     <nav class="topnav" id="topnav">
-        <a href="index.html"><span>首页</span><span class="en">Honme</span></a>
-        <a href="about.html"><span>关于我</span><span class="en">About</span></a>
-        </a><a href="saylist.html"><span>个人日记</span><span class="en">Diary</span></a>
-        <a href="seolist.html"><span>SEO技术</span><span class="en">Seo</span></a>
-        <a href="weblist.html"><span>WEB前端</span><span class="en">Web</span></a>
-        <a href="gustbook.html"><span>留言版</span><span class="en">Gustbook</span></a>
+        <a href="index.html"><span>@{{ index }}</span><span class="en">Home</span></a>
+        <a href="about.html"><span>@{{ about }}</span><span class="en">About</span></a>
+        </a><a href="saylist.html"><span>@{{ saylist }}</span><span class="en">Diary</span></a>
+        <a href="seolist.html"><span>@{{ seolist }}</span><span class="en">Seo</span></a>
+        <a href="weblist.html"><span>@{{ weblist }}</span><span class="en">Web</span></a>
+        <a href="gustbook.html"><span>@{{ gustbook }}</span><span class="en">Gustbook</span></a>
     </nav>
 </header>
 <!--end header-->
@@ -39,57 +44,9 @@
     </h2>
     <div class="bloglist left">
         <!--wz-->
-        <div class="wz">
-            <h3>关于响应式布局</h3>
-            <p class="dateview"><span>2013-11-04</span><span>作者：段亮</span><span>分类：[<a href="#">web前端</a>]</span></p>
-            <figure><img src="images/001.jpg"></figure>
-            <ul>
-                <p>随着互联网的快速发展，以及html5+css3的迅速崛起。渐渐的响应式布局，也会慢慢的出现在我们的视野里，身为专业的web前端，还不学习新技术你就out啦！为什么这样说呢？因为响应式布局能同时兼容多个终端，比如（手机、平板、PC）...</p>
-                <a title="阅读全文" href="/" target="_blank" class="readmore">阅读全文>></a>
-            </ul>
-            <div class="clear"></div>
-        </div>
-        <!--end-->
-        <!--wz-->
-        <div class="wz">
-            <h3>关于响应式布局</h3>
-            <p class="dateview"><span>2013-11-04</span><span>作者：段亮</span><span>分类：[<a href="#">web前端</a>]</span></p>
-            <figure><img src="images/001.jpg"></figure>
-            <ul>
-                <p>随着互联网的快速发展，以及html5+css3的迅速崛起。渐渐的响应式布局，也会慢慢的出现在我们的视野里，身为专业的web前端，还不学习新技术你就out啦！为什么这样说呢？因为响应式布局能同时兼容多个终端，比如（手机、平板、PC）...</p>
-                <a title="阅读全文" href="/" target="_blank" class="readmore">阅读全文>></a>
-            </ul>
-            <div class="clear"></div>
-        </div>
-        <!--end-->
-        <!--wz-->
-        <div class="wz">
-            <h3>关于响应式布局</h3>
-            <p class="dateview"><span>2013-11-04</span><span>作者：段亮</span><span>分类：[<a href="#">web前端</a>]</span></p>
-            <figure><img src="images/001.jpg"></figure>
-            <ul>
-                <p>随着互联网的快速发展，以及html5+css3的迅速崛起。渐渐的响应式布局，也会慢慢的出现在我们的视野里，身为专业的web前端，还不学习新技术你就out啦！为什么这样说呢？因为响应式布局能同时兼容多个终端，比如（手机、平板、PC）...</p>
-                <a title="阅读全文" href="/" target="_blank" class="readmore">阅读全文>></a>
-            </ul>
-            <div class="clear"></div>
-        </div>
-        <!--end-->
-        <!--wz-->
-        <div class="wz">
-            <h3>关于响应式布局</h3>
-            <p class="dateview"><span>2013-11-04</span><span>作者：段亮</span><span>分类：[<a href="#">web前端</a>]</span></p>
-            <figure><img src="images/001.jpg"></figure>
-            <ul>
-                <p>随着互联网的快速发展，以及html5+css3的迅速崛起。渐渐的响应式布局，也会慢慢的出现在我们的视野里，身为专业的web前端，还不学习新技术你就out啦！为什么这样说呢？因为响应式布局能同时兼容多个终端，比如（手机、平板、PC）...</p>
-                <a title="阅读全文" href="/" target="_blank" class="readmore">阅读全文>></a>
-            </ul>
-            <div class="clear"></div>
-        </div>
-        <!--end-->
-        <!--wz-->
-        <div class="wz">
-            <h3>关于响应式布局</h3>
-            <p class="dateview"><span>2013-11-04</span><span>作者：段亮</span><span>分类：[<a href="#">web前端</a>]</span></p>
+        <div class="wz" v-for="todo in blog">
+            <h3>@{{ todo.title }}</h3>
+            <p class="dateview"><span>2013-11-04</span><span>作者：@{{ todo.auth }}</span><span>分类：[<a href="#">test</a>]</span></p>
             <figure><img src="images/001.jpg"></figure>
             <ul>
                 <p>随着互联网的快速发展，以及html5+css3的迅速崛起。渐渐的响应式布局，也会慢慢的出现在我们的视野里，身为专业的web前端，还不学习新技术你就out啦！为什么这样说呢？因为响应式布局能同时兼容多个终端，比如（手机、平板、PC）...</p>
@@ -148,7 +105,6 @@
     <p><span>Design By:<a href="www.duanliang920.com" target="_blank">段亮</a></span><span>网站地图</span><span><a href="/">网站统计</a></span></p>
 </footer>
 <script src="js/nav.js"></script>
-<!--百度分享-->
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+<script src="{{asset('js/home.js')}}" type="text/javascript"></script>
 </body>
 </html>

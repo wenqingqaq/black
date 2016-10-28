@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Http\Controllers\Admin\CommonController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use App\Model\Blog\Blog;
 use App\Server\Admin\AuthorityService;
+use App\Server\Admin\BlogService;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Validation\ValidationException;
 use Illuminate\Http\Request;
@@ -14,12 +17,23 @@ use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 
-class IndexController extends Controller
+class IndexController extends CommonController
 {
     //
     public function index()
     {
-        return view('home.index');
+        $blogServer = new BlogService();
+        $blog = $blogServer->getBlogAndCategoryForHome();
+
+        return view('home.index')->with('blog',$blog);
+    }
+
+    public function getBlog()
+    {
+        $blogServer = new BlogService();
+        $blog = $blogServer->getBlogAndCategoryForHome();
+
+        return $this->successReturn($blog);
     }
 
     public function info()

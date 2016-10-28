@@ -12,6 +12,6 @@ class BlogCategory extends Authenticatable
 
     public function blog()
     {
-        return $this->hasMany('App\Model\Blog\Blog','c_id');
+        return $this->hasMany('App\Model\Blog\Blog','id');
     }
 }

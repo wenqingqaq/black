@@ -21,6 +21,7 @@ Route::get('/test',function(){
  */
 Route::group(['namespace'=>'Home'], function () {
     Route::get('/','IndexController@index');
+    Route::resource('/getBlog','IndexController@getBlog');
 });
 
 /**
