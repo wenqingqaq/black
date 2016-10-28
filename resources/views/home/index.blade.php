@@ -6,16 +6,15 @@
     <meta name="keywords" content="个人博客模板,博客模板" />
     <meta name="description" content="优雅、稳重、大气,低调。" />
     <link href="css/index.css" rel="stylesheet">
+    <link href="css/home.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <!--[if lt IE 9]>
     <script src="js/html5.js"></script>
     <![endif]-->
     <script src="{{asset('js/vue.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/vue-resource.min.js')}}" type="text/javascript"></script>
 </head>
 <body>
-<script type="text/javascript">
-    var blog = '<?php echo $blog;?>';
-    //console.log(eval(blog));
-</script>
 <header>
     <div id="logo"><a href="/"></a></div>
     <nav class="topnav" id="topnav">
@@ -42,19 +41,30 @@
     <h2 class="title_tj">
         <p>博主<span>推荐</span></p>
     </h2>
-    <div class="bloglist left">
+    <div class="bloglist left" id="blog">
         <!--wz-->
-        <div class="wz" v-for="todo in blog">
-            <h3>@{{ todo.title }}</h3>
-            <p class="dateview"><span>2013-11-04</span><span>作者：@{{ todo.auth }}</span><span>分类：[<a href="#">test</a>]</span></p>
+        <div class="wz" v-for="item in items">
+            <h3>@{{ item.title }}</h3>
+            <p class="dateview"><span>2013-11-04</span><span>作者：@{{ item.auth }}</span><span>分类：[<a href="#">@{{ item.name }}</a>]</span></p>
             <figure><img src="images/001.jpg"></figure>
             <ul>
-                <p>随着互联网的快速发展，以及html5+css3的迅速崛起。渐渐的响应式布局，也会慢慢的出现在我们的视野里，身为专业的web前端，还不学习新技术你就out啦！为什么这样说呢？因为响应式布局能同时兼容多个终端，比如（手机、平板、PC）...</p>
+                <p>@{{ item.body }}...</p>
                 <a title="阅读全文" href="/" target="_blank" class="readmore">阅读全文>></a>
             </ul>
             <div class="clear"></div>
         </div>
         <!--end-->
+        <nav id="page">
+            <ul class="pagination">
+                <li><a href="#">&laquo;</a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">&raquo;</a></li>
+            </ul>
+        </nav>
     </div>
     <!--right-->
     <aside class="right">
@@ -105,6 +115,41 @@
     <p><span>Design By:<a href="www.duanliang920.com" target="_blank">段亮</a></span><span>网站地图</span><span><a href="/">网站统计</a></span></p>
 </footer>
 <script src="js/nav.js"></script>
-<script src="{{asset('js/home.js')}}" type="text/javascript"></script>
+{{--<script src="{{asset('js/home.js')}}" type="text/javascript"></script>--}}
+<script type="text/javascript">
+    new Vue({
+        el: '#blog',
+        data: {
+            pagination: {
+                total: 0,
+                per_page: 7,
+                from: 1,
+                to: 0,
+                current_page: 1
+            },
+            offset: 4,// left and right padding from the pagination <span>,just change it to see effects
+            items: []
+        },
+        ready:function(){
+            this.fetchItems(this.pagination.current_page);
+        },
+        methods: {
+            fetchItems: function (page) {
+                var data = {page: page};
+                this.$http.get('getBlog', data).then(function (response) {
+                    //look into the routes file and format your response
+                    this.$set('items', response.data.data);
+                    this.$set('pagination', response.data.pagination);
+                }, function (error) {
+                    // handle error
+                });
+            },
+            changePage: function (page) {
+                this.pagination.current_page = page;
+                this.fetchItems(page);
+            }
+        }
+    });
+</script>
 </body>
 </html>

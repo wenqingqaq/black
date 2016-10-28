@@ -6,5 +6,5 @@
  * Time: 13:57
  */
 return [
-    'rows' => 10
+    'rows' => 5
 ];

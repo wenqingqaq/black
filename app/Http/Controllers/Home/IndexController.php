@@ -22,18 +22,23 @@ class IndexController extends CommonController
     //
     public function index()
     {
-        $blogServer = new BlogService();
-        $blog = $blogServer->getBlogAndCategoryForHome();
-
-        return view('home.index')->with('blog',$blog);
+        return view('home.index');
     }
 
+    /**
+     * 获取博客数据
+     * @return mixed
+     * create by wenQing
+     */
     public function getBlog()
     {
         $blogServer = new BlogService();
         $blog = $blogServer->getBlogAndCategoryForHome();
 
-        return $this->successReturn($blog);
+        return [
+            'data' => $blog,
+            'current_page' => 1
+        ];
     }
 
     public function info()

@@ -12,10 +12,3 @@ new Vue({
         gustbook : '留言板',
     }
 });
-
-new Vue({
-    el: '.wz',
-    data: {
-        blog: eval(blog)
-    }
-});

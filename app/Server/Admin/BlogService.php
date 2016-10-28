@@ -53,9 +53,45 @@ class BlogService
     {
         $rows = Config::get('common.rows');
         $start = ($page-1)*$rows;
+        $db = DB::table('blog as b')->where('status',1);
+        if(!empty($page) && !empty($rows)) $db = $db->take($rows)->skip($start);
+
+        $response = $db
+            ->select('b.*','c.name')
+            ->leftJoin('blog_category as c','c.id','=','b.c_id')
+            ->get();
+        foreach($response as $k => $blog)
+        {
+            $response[$k]->body = mb_substr(strip_tags($blog->body),0,100);
+        }
+
+        return $response;
+    }
+
+    public function getBlogAndCategoryForHome2($page = 1)
+    {
+        $rows = Config::get('common.rows');
+        $results = Blog::where('status',1)->get();
+        dd($results);
+        $response = [
+            'pagination' => [
+                'total' => $results->total(),
+                'per_page' => $results->perPage(),
+                'current_page' => $results->currentPage(),
+                'last_page' => $results->lastPage(),
+                'from' => $results->firstItem(),
+                'to' => $results->lastItem()
+            ],
+            'data' => $results
+        ];
+
+        return $response;
+
+        $rows = Config::get('common.rows');
+        $start = ($page-1)*$rows;
         $result = Blog::where('status',1)->take($rows)->skip($start)->get();
 
-        return $result->toJson();
+        return $result;
     }
 
     public function getCategory()
