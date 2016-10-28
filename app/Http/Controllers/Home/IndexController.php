@@ -35,10 +35,7 @@ class IndexController extends CommonController
         $blogServer = new BlogService();
         $blog = $blogServer->getBlogAndCategoryForHome();
 
-        return [
-            'data' => $blog,
-            'current_page' => 1
-        ];
+        return $blog;
     }
 
     public function info()

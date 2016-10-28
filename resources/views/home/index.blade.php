@@ -56,13 +56,22 @@
         <!--end-->
         <nav id="page">
             <ul class="pagination">
-                <li><a href="#">&laquo;</a></li>
+                <li v-if="pagination.current_page > 1">
+                    <a href="#" aria-label="Previous"
+                       @click.prevent="changePage(pagination.current_page - 1)">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
                 <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">&raquo;</a></li>
+                <li v-for="page in pagesNumber" v-bind:class="[ page == isActived ? 'active' : '']">
+                    <a href="#" @click.prevent="changePage(page)">@{{ page }}</a>
+                </li>
+                <li v-if="pagination.current_page < pagination.last_page">
+                    <a href="#" aria-label="Next"
+                       @click.prevent="changePage(pagination.current_page + 1)">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
@@ -131,13 +140,14 @@
             items: []
         },
         ready:function(){
-            this.fetchItems(this.pagination.current_page);
+            this.fetchItems(this.current_page);
         },
         methods: {
             fetchItems: function (page) {
                 var data = {page: page};
                 this.$http.get('getBlog', data).then(function (response) {
                     //look into the routes file and format your response
+                    console.log(response.data.pagination.current_page);
                     this.$set('items', response.data.data);
                     this.$set('pagination', response.data.pagination);
                 }, function (error) {
@@ -145,8 +155,33 @@
                 });
             },
             changePage: function (page) {
-                this.pagination.current_page = page;
+                this.current_page = page;
                 this.fetchItems(page);
+            }
+        },
+        computed:{
+            isActived: function () {
+                return this.pagination.current_page;
+            },
+            pagesNumber: function () {
+                if (!this.pagination.to) {
+                    return [];
+                }
+                var from = this.pagination.current_page - this.offset;
+                if (from < 1) {
+                    from = 1;
+                }
+                var to = from + (this.offset * 2);
+                if (to >= this.pagination.last_page) {
+                    to = this.pagination.last_page;
+                }
+                var pagesArray = [];
+                while (from <= to) {
+                    pagesArray.push(from);
+                    from++;
+                }
+
+                return pagesArray;
             }
         }
     });

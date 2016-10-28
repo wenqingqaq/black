@@ -53,6 +53,8 @@ class BlogService
     {
         $rows = Config::get('common.rows');
         $start = ($page-1)*$rows;
+
+        $count = DB::table('blog as b')->where('status',1)->count();
         $db = DB::table('blog as b')->where('status',1);
         if(!empty($page) && !empty($rows)) $db = $db->take($rows)->skip($start);
 
@@ -65,14 +67,21 @@ class BlogService
             $response[$k]->body = mb_substr(strip_tags($blog->body),0,100);
         }
 
-        return $response;
+        return [
+            'data' => $response,
+            'pagination' => [
+                'current_page' => $page, //当前页数
+                'total' => $count, //总共数据
+                'per_page' => $rows, //每页显示
+                'from' => $start + 1, //开始
+                'to' => $start + $count //结束
+            ]
+        ];
     }
 
     public function getBlogAndCategoryForHome2($page = 1)
     {
-        $rows = Config::get('common.rows');
-        $results = Blog::where('status',1)->get();
-        dd($results);
+        $results = Blog::where('status',1)->paginate(1);
         $response = [
             'pagination' => [
                 'total' => $results->total(),
@@ -84,8 +93,7 @@ class BlogService
             ],
             'data' => $results
         ];
-
-        return $response;
+        dd($response);
 
         $rows = Config::get('common.rows');
         $start = ($page-1)*$rows;
