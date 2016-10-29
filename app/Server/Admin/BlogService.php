@@ -67,12 +67,14 @@ class BlogService
             $response[$k]->body = mb_substr(strip_tags($blog->body),0,100);
         }
 
+        $lastPage = ($count/$rows == 0) ? $count/$rows : ceil($count/$rows);
         return [
             'data' => $response,
             'pagination' => [
                 'current_page' => $page, //当前页数
                 'total' => $count, //总共数据
                 'per_page' => $rows, //每页显示
+                'last_page' => $lastPage,
                 'from' => $start + 1, //开始
                 'to' => $start + $count //结束
             ]

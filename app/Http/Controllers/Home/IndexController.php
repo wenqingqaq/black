@@ -30,10 +30,10 @@ class IndexController extends CommonController
      * @return mixed
      * create by wenQing
      */
-    public function getBlog()
+    public function getBlog(Request $request)
     {
         $blogServer = new BlogService();
-        $blog = $blogServer->getBlogAndCategoryForHome();
+        $blog = $blogServer->getBlogAndCategoryForHome($request->page);
 
         return $blog;
     }
